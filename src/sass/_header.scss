@@ -20,11 +20,13 @@
 
 .header-menu__logo {
 	display: flex;
+	align-items: center;
 	margin-right: auto;
 }
 
 .menu-logo__logo {
-	height: 28px;
+	width: 24px;
+	height: 25px;
 	margin-right: 10px;
 }
 
@@ -117,10 +119,14 @@
 	display: block;
 	margin: 0 auto;
 	border: none;
-	border-bottom: 0.5px solid var(--secondary-white-text-color);
+	border-bottom: 0.5px solid gray;
 	background: none;
 	outline: none;
-	color: #fff;
+	color: var(--secondary-white-text-color);
+
+	&:focus {
+		border-bottom: 0.5px solid var(--secondary-white-text-color);
+	}
 
 	@media screen and (max-width: 767px) {
 		width: 100%;
@@ -133,17 +139,26 @@
 	}
 }
 
-::placeholder {
-	color: #fff;
+.search-input::placeholder {
+	color: gray;
+
+	&:focus {
+		background: white;
+		color: #fff;
+	}
 }
 
 .search-icon {
 	position: absolute;
 	width: 15px;
 	height: 15px;
-	fill: #fff;
+	fill: gray;
 	right: 0;
 	top: 0;
+
+	&:hover {
+		cursor: pointer;
+	}
 
 	@media screen and (min-width: 768px) and (max-width: 1279px) {
 		right: 185px;
