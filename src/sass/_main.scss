@@ -1,3 +1,9 @@
+.flex{
+    display: flex;
+    padding: 0;
+    align-items: baseline;
+    }
+
 .films_list__title{
     display: none;
 }
@@ -6,6 +12,7 @@
     flex-wrap: wrap;
     box-sizing: border-box;
     margin: 0;
+    margin-top: 20px;
     margin-bottom: 60px;
 }
 
@@ -43,7 +50,17 @@ line-height: 14px;
 color: var(--accent-color);
 }
 
+.film_card__rating{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--accent-color);
+    }
+
 @media screen and (min-width: 768px){
+    .films_list{
+        margin-top: 60px;
+    }
     .film_card{
         width: calc((100% - 32px)/2);
         margin-right: 32px;
