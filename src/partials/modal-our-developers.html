@@ -5,12 +5,28 @@
                 <use href="/src/images/icons.svg#close-cross"></use>
             </svg>
         </button>
+        
+        
 
         <div class="team glide">
+            <h2 class="team__title"> Our team </h2>
             <div data-glide-el="track" class="glide__track">
-            <!-- <h2 class="team__title"> Our team </h2> -->
-            <ul class="team__list list glide__slides"></ul>
+                <ul class="team__list list glide__slides"></ul>
+            </div>
+
+            <button aria-label="Previous"  class="slider__button" id="prev">
+                <svg class="slider__arrow-left" width="15" height="15">
+                    <use href="/src/images/icons.svg#arrow-left"></use>
+                </svg>
+            </button>
+
+            <button aria-label="Next" class="slider__button" id="next">
+                <svg class="slider__arrow-right" width="15" height="15">
+                    <use href="/src/images/icons.svg#arrow-right"></use>
+                </svg>
+            </button>
+            <div role="tablist" class="dots"></div>
         </div>
-        </div>
+        
     </div>
   </div>
