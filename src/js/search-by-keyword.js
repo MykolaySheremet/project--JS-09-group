@@ -1,3 +1,8 @@
-import { getMovieByKeyword } from './fetchFilms';
+// import { getMovieByKeyword } from './fetchFilms';
 
-const searchInput = document.querySelector('header-search');
+const searchForm = document.querySelector('header-search');
+searchForm.addEventListener('submit', onSearchByKeyword);
+
+function onSearchByKeyword(event) {
+  event.preventDeafault();
+}
