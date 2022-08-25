@@ -25,7 +25,7 @@ function onHomeClick() {
 	placeholder="Movie search"
 />
 <svg class="search-icon">
-	<use class="i" href="./images/symbol-defs.svg#icon-search"></use>
+	<use href="./images/symbol-defs.svg#icon-search"></use>
 </svg>`;
   HOME.classList.add('current');
   LIBRARY.classList.remove('current');
