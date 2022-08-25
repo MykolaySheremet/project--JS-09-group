@@ -45,7 +45,7 @@ function renderTrendingMovies(filmsList) {
           const genreStr = genreArr.join(', '); */
         
         return `
-        <li class = "film_card data-id="${id}">
+        <li class = "film_card" data-id="${id}">
         <div class="film_card__img">
            <img class="film_card__img--block"
            src=${imageUrl}
