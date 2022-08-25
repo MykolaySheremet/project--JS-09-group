@@ -1,7 +1,7 @@
-import defaultPoster from '../../img/cinema320.jpg';
-import defaultPosterMob from '../../img/cinema480.jpg';
-import defaultPosterTab from '../../img/cinema768.jpg';
-import defaultPosterDesc from '../../img/cinema1280.jpg';
+import defaultPoster from '../img/cinema320.jpg';
+import defaultPosterMob from '../img/cinema480.jpg';
+import defaultPosterTab from '../img/cinema768.jpg';
+import defaultPosterDesc from '../img/cinema1280.jpg';
 
 const btnLibrary = document.querySelector('.link-library');
 const listOfFilmMain = document.querySelector('.films_list');
