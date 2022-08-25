@@ -18,11 +18,13 @@ main{
     background: var(--color-secondary); 
 }
 
-.toggle__container {
-    padding-top: 30px;
-}
+// .toggle__container {
+//     padding-top: 10px;
+// }
 
 .toggle__box{
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     justify-content: center;
     @media screen and (min-width: 1280px) {
