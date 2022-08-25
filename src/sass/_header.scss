@@ -76,6 +76,7 @@
 		animation-iteration-count: infinite;
 	}
 
+
 	@keyframes glowing {
 		0% {
 			opacity: 1;
@@ -91,6 +92,51 @@
 			text-shadow: none;
 		}
 	}
+
+.menu-logo__text {
+    display: contents;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+
+    font-size: 30px;
+    color: var(--secondary-white-text-color);
+    margin: 0 0;
+}
+
+.header-menu__logo:hover, 
+.header-menu__logo:focus{
+
+    .menu-logo__text_animation {
+    
+            opacity: 0.1;
+            animation-name: glowing;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+    
+        @keyframes glowing {
+            0% {
+                opacity: 1;
+                filter: blur(1px);
+                text-shadow: 0 0 10px rgba(255, 107, 8, 1),
+                    0 0 20px rgba(255, 107, 8, 1),
+                    0 0 40px rgba(255, 107, 8, 1),
+                    0 0 80px rgba(255, 107, 8, 1),
+                    0 0 160px rgba(255, 107, 8, 1),
+                    0 0 320px rgba(255, 107, 8, 1),
+                    0 0 640px rgba(255, 107, 8, 1);
+            }
+    
+            97% {
+                opacity: 1;
+                filter: blur(0);
+                text-shadow: none;
+            }
+    
+        }
+
 }
 
 .header-menu__nav {
