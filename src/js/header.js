@@ -7,6 +7,9 @@ const HOME = document.querySelector('#home');
 const INPCONTAINER = document.querySelector('.input-container');
 const BTNCONTAINER = document.querySelector('.header-search__container');
 
+import backImage from '../images/library-desktop.jpg';
+import mainBackImage from '../images/header-bg.jpg';
+
 LIBRARY.addEventListener('click', onLibraryClick);
 HOME.addEventListener('click', onHomeClick);
 
@@ -16,6 +19,7 @@ function onLibraryClick() {
   HOME.classList.remove('current');
   BTNCONTAINER.classList.remove('unvisible');
   HEADERTHUMB.classList.remove('hidden');
+  HEADER.style.backgroundImage = `url(${backImage}`;
 }
 
 function onHomeClick() {
@@ -31,4 +35,5 @@ function onHomeClick() {
   LIBRARY.classList.remove('current');
   BTNCONTAINER.classList.add('unvisible');
   HEADERTHUMB.classList.add('hidden');
+  HEADER.style.backgroundImage = `url(${mainBackImage}`;
 }
