@@ -3,7 +3,7 @@ import { getTrendingMovies } from './fetchFilms'
 const gallery = document.querySelector('.films_list')
 
 function buildTrendingsMovies(){
-    getTrendingMovies()
+    getTrendingMovies(1)
     .then(films => {
         gallery.innerHTML = ''
         gallery.insertAdjacentHTML('beforeend', renderTrendingMovies(films.data.results))
@@ -65,4 +65,11 @@ function renderTrendingMovies(filmsList) {
     return markup
   }
 
-  buildTrendingsMovies()
+buildTrendingsMovies()
+
+
+
+
+// зробив собі експорт - щоб логіка працювала в файлі при нажаті кнопки HOME   - і повертало рендер
+export { buildTrendingsMovies };
+export { renderTrendingMovies };
