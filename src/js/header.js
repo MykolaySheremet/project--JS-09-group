@@ -1,3 +1,5 @@
+
+
 const HEADER = document.querySelector('.header');
 const HEADERTHUMB = document.querySelector('.header-thumb');
 
@@ -16,7 +18,9 @@ function onLibraryClick() {
   HOME.classList.remove('current');
   BTNCONTAINER.classList.remove('unvisible');
   HEADERTHUMB.classList.remove('hidden');
+  
 }
+
 
 function onHomeClick() {
   INPCONTAINER.innerHTML = `<input
