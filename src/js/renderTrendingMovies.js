@@ -60,7 +60,7 @@ function renderTrendingMovies(filmsList) {
       )
       .join('')
     
-    console.log(markup)
+    // console.log(markup)
     gallery.insertAdjacentHTML('beforeend', markup)
     return markup
   }

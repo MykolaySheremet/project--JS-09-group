@@ -1,4 +1,5 @@
-import './js/renderTrendingMovies'
+import './js/renderTrendingMovies';
+import './js/preloader';
 import './js/header.js';
 import './js/modal';
 import './js/libraries';
