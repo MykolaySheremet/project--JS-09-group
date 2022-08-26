@@ -1,18 +1,11 @@
-import { getTrendingMovies } from './fetchFilms'
+import { getMovieGenres } from './fetchFilms'
 
 const gallery = document.querySelector('.films_list')
 
-// function buildTrendingsMovies(){
-//     getTrendingMovies(1)
-//     .then(films => {
-//         gallery.innerHTML = ''
-//         gallery.insertAdjacentHTML('beforeend', renderTrendingMovies(films.data.results))
-//     })
-//     .catch('error')
 
-//     }
-
-function renderTrendingMovies(filmsList, data) {
+async function renderTrendingMovies(filmsList) {
+try {
+  const genres = await getMovieGenres()
     const markup = filmsList
     .map(
         ({
@@ -33,17 +26,7 @@ function renderTrendingMovies(filmsList, data) {
           const year = new Date(date).getFullYear();
           const name = original_title ? original_title : original_name;
           const vote = vote_average ? vote_average.toFixed(1) : 'N/A';
-          const genresList = findGenresNames(genre_ids, data)
-        /*   const genreArr = genres
-            ? genres.slice(0, 2).map(genre => genre.name)
-            : [];
-  
-          if (genres.length > 2 || genres.length === 0) {
-            genreArr.push('Others');
-          }
-  
-          const genreStr = genreArr.join(', '); */
-        
+          const genresList = findGenresNames(genre_ids, genres.data.genres)
         return `
         <li class = "film_card" data-id="${id}">
         <div class="film_card__img">
@@ -59,15 +42,12 @@ function renderTrendingMovies(filmsList, data) {
       }
       )
       .join('')
-    
-    // console.log(markup)
-
 
     gallery.innerHTML= markup
-
-  }
-
-// buildTrendingsMovies()
+} catch (error) {
+  console.log(error)
+}
+}
 
 function findGenresNames(genre_ids, data){
   const filmGenres = [];
@@ -89,7 +69,4 @@ function findGenresNames(genre_ids, data){
   return genreStr;
 } 
 
-
-// зробив собі експорт - щоб логіка працювала в файлі при нажаті кнопки HOME   - і повертало рендер
-// export { buildTrendingsMovies };
 export { renderTrendingMovies };

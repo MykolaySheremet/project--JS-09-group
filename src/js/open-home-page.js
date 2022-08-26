@@ -26,16 +26,14 @@ paginationButtons.addEventListener("click", selectPage)
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage () {
-    getMovieGenres()
-    .then(allGenres => {
     getTrendingMovies(1)
     .then(film => {
-        renderTrendingMovies(film.data.results, allGenres.data.genres)
+        renderTrendingMovies(film.data.results)
         renderButtonsOfPagination(film.data, 1)
         onHomeClick()
     })
     .catch(error => console.log(error))
-})
 }
+
 
 export { openHomePage }
