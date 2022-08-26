@@ -24,11 +24,10 @@ function closeToBackdrop(e) {
     }
   }
 
-document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    if (evt.keyCode == 27) {
-        closeModalWindow();
-        }
-    };
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') {
+closeModalWindow()
+}
+});
 
 export { openModalWindow }

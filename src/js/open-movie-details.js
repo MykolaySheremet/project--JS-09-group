@@ -38,16 +38,16 @@ function buildFilmData(data) {
 }
 
 function renderFilmData(data) {
-    console.log(data);
     const imageUrl = `https://image.tmdb.org/t/p/w500/${data["poster_path"]}`
     const name = data["original_title"];
-    const vote = data["vote_average"];
+    const vote = data["vote_average"].toFixed(1);
     const votes = data["vote_count"];
-    const popularity = data["popularity"];
+    const popularity = data["popularity"].toFixed(1);
     const overview = data["overview"];
-    const genres = data["genres"]
-
-    console.log(genres);
+    var genresList = data["genres"].reduce(function(acc, item) {
+        return acc + item["name"] + ", ";
+    }, "");
+    const genres = genresList.slice(0, -2);
 
     return `
         <img class="modal-window__image" src="${imageUrl}" alt="">
@@ -66,7 +66,7 @@ function renderFilmData(data) {
                         </li>
                         <li class="modal-window__popularity">${popularity}</li>
                         <li class="modal-window__original-title">${name}</li>
-                        <li class="modal-window__genre">Western</li>
+                        <li class="modal-window__genre">${genres}</li>
                     </ul>
                 </div>
                 <h3 class="modal-window__info-header">About</h3>
@@ -78,6 +78,7 @@ function renderFilmData(data) {
 }
 
 function openFilmModalWindow(data) {
+    document.body.style.overflow = "hidden";
     backdrop.classList.remove('is-hidden');
     closeBtn.addEventListener('click', closeFilmModalWindow);
     backdrop.addEventListener('click', closeFilmBackdrop);
@@ -85,16 +86,24 @@ function openFilmModalWindow(data) {
 }
 
 function closeFilmModalWindow() {
+    document.body.style.overflow = "";
     backdrop.classList.add('is-hidden');
     closeBtn.removeEventListener('click', closeFilmModalWindow);
     backdrop.removeEventListener('click', closeFilmBackdrop);
 }
 
 function closeFilmBackdrop(event) {
+    document.body.style.overflow = "";
     let name = event.target.className;
     if (name === "modal-backdrop") {
         closeFilmModalWindow();
     }
 }
+
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') {
+closeFilmModalWindow()
+}
+});
 
 export { openMovieDetails }
