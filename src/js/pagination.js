@@ -1,4 +1,5 @@
-import { getTrendingMovies } from './js/fetchFilms'
+import { getTrendingMovies } from './fetchFilms'
+import { renderTrendingMovies } from './renderTrendingMovies'
 
 const paginationButtons = document.querySelector(".pagination-nav")
 let currentPage = 1
@@ -114,7 +115,7 @@ function selectPage({target}) {
     if (target.id === "prev-page") {
         getTrendingMovies(currentPage - 1)
         .then(({data}) => {
-            console.log(data.results)
+            renderTrendingMovies(data.results)
             currentPage-=1
             renderButtonsOfPagination(data)
         })
@@ -124,7 +125,7 @@ function selectPage({target}) {
     if (target.id === "next-page") {
         getTrendingMovies(currentPage + 1)
         .then(({data}) => {
-            console.log(data.results)
+            renderTrendingMovies(data.results)
             currentPage+=1
             renderButtonsOfPagination(data)
         })
@@ -134,7 +135,7 @@ function selectPage({target}) {
     currentPage = Number(target.textContent)
     getTrendingMovies(currentPage)
         .then(({data}) => {
-            console.log(data.results)
+            renderTrendingMovies(data.results)
             renderButtonsOfPagination(data)      
         })
 }
@@ -161,9 +162,5 @@ function disableArrow(total_pages) {
     }
 }
 
-// getTrendingMovies(currentPage)
-// .then(({data}) => {
-//     console.log(data.results)
-//     paginationButtons.addEventListener("click", selectPage)
-//     renderButtonsOfPagination(data)
-// })
+export { selectPage }
+export { renderButtonsOfPagination }
