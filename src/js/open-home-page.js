@@ -30,7 +30,7 @@ function openHomePage () {
     getTrendingMovies(1)
     .then(film => {
         renderTrendingMovies(film.data.results)
-        renderButtonsOfPagination(film.data)
+        renderButtonsOfPagination(film.data, 1)
         onHomeClick()
     })
     .catch(error => console.log(error))
