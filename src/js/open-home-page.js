@@ -7,7 +7,6 @@ import { openModalWindow } from './modal'
 import { openLibrary } from './open-library'
 import { toggleTheme } from './light-theme-switcher';
 // import { openMovieDetails } from './open-movie-details'
-// import debounce from 'lodash.debounce'
 
 const LIBRARY = document.querySelector('#library');
 const HOME = document.querySelector('#home');
@@ -16,9 +15,8 @@ const input = document.querySelector('#slider');
 const paginationButtons = document.querySelector(".pagination-nav")
 // const gallery = document.querySelector('.films_list')
 const openBtn = document.querySelector('.footer__authorship')
-// const DEBOUNCE_DELAY =
 
-// searchInput.addEventListener('input', debounce(getInputValue, DEBOUNCE_DELAY))
+// searchInput.addEventListener('submit', getInputValue)
 HOME.addEventListener('click', openHomePage);
 LIBRARY.addEventListener('click', openLibrary);
 input.addEventListener('click', toggleTheme);
