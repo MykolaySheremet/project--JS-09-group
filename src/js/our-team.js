@@ -1,6 +1,8 @@
 import { teamItems } from "./team-data";
 import Glide from '@glidejs/glide'
 
+
+
 const teamItemContainer = document.querySelector('.team__list');
 const teamMarkup = createMarkup(teamItems);
 teamItemContainer.insertAdjacentHTML("beforeend", teamMarkup);
