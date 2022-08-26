@@ -1,5 +1,4 @@
 import { getTrendingMovies } from './fetchFilms';
-import { getMovieGenres} from './fetchFilms'
 import { renderTrendingMovies } from './renderTrendingMovies';
 import { renderButtonsOfPagination } from './pagination';
 import { selectPage } from './pagination';
