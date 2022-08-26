@@ -61,7 +61,10 @@ function renderTrendingMovies(filmsList) {
       .join('')
     
     // console.log(markup)
+
+
     gallery.innerHTML= markup
+
   }
 
 // buildTrendingsMovies()
