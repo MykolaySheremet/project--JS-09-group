@@ -1,4 +1,5 @@
 import { getTrendingMovies } from './fetchFilms';
+import { getMovieGenres} from './fetchFilms'
 import { renderTrendingMovies } from './renderTrendingMovies';
 import { renderButtonsOfPagination } from './pagination';
 import { selectPage } from './pagination';
@@ -25,13 +26,16 @@ paginationButtons.addEventListener("click", selectPage)
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage () {
+    getMovieGenres()
+    .then(allGenres => {
     getTrendingMovies(1)
     .then(film => {
-        renderTrendingMovies(film.data.results)
+        renderTrendingMovies(film.data.results, allGenres.data.genres)
         renderButtonsOfPagination(film.data, 1)
         onHomeClick()
     })
     .catch(error => console.log(error))
+})
 }
 
 export { openHomePage }

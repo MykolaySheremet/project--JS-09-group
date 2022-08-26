@@ -12,7 +12,7 @@ const gallery = document.querySelector('.films_list')
 
 //     }
 
-function renderTrendingMovies(filmsList) {
+function renderTrendingMovies(filmsList, data) {
     const markup = filmsList
     .map(
         ({
@@ -33,7 +33,7 @@ function renderTrendingMovies(filmsList) {
           const year = new Date(date).getFullYear();
           const name = original_title ? original_title : original_name;
           const vote = vote_average ? vote_average.toFixed(1) : 'N/A';
-  
+          const genresList = findGenresNames(genre_ids, data)
         /*   const genreArr = genres
             ? genres.slice(0, 2).map(genre => genre.name)
             : [];
@@ -52,7 +52,7 @@ function renderTrendingMovies(filmsList) {
            alt="${name}">
            </div>
            <h3 class="film_card__title">${name}</h3>
-           <p class="film_card__type">${genre_ids} | ${year}</p>
+           <p class="film_card__type">${genresList} | ${year}</p>
            <p class="film_card__rating">Rating: ${vote}</p>
      </li>
      `
@@ -69,7 +69,25 @@ function renderTrendingMovies(filmsList) {
 
 // buildTrendingsMovies()
 
+function findGenresNames(genre_ids, data){
+  const filmGenres = [];
+  const genresList = data
+  .map(
+    ({id, name}) =>
+    {
+      if (genre_ids.includes(id)) {
+        filmGenres.push(name);
+      }
+    }  
+  )
 
+  const genreArr = filmGenres.slice(0, 2)
+  if (filmGenres.length > 2 || filmGenres.length === 0) {
+    genreArr.push('Others');
+  }
+  const genreStr = genreArr.join(', ');
+  return genreStr;
+} 
 
 
 // зробив собі експорт - щоб логіка працювала в файлі при нажаті кнопки HOME   - і повертало рендер
