@@ -1,15 +1,15 @@
 import { getMovieDetails } from './fetchFilms'
+// import { addToWatchedList } from './'
+// import { addToQueueList } from './'
 
-const filmList = document.querySelector(".films_list");
 const closeBtn = document.querySelector(".modal-window__close-btn")
 const backdrop = document.querySelector(".modal-backdrop")
 const modalData = document.querySelector(".modal-window__container")
+const addToWatchedButton = document.querySelector('.modal-window__button-watched')
+const addToQueueButton = document.querySelector('.modal-window__button-queue')
 
-filmList.addEventListener("click", selectFilm);
-
-function selectFilm(event) {
+function openMovieDetails(event) {
     let selectedFilm;
-
     if (event.target.nodeName === "UL") {
         return;
     };
@@ -24,6 +24,9 @@ function selectFilm(event) {
     };
 
     openFilmModalWindow(selectedFilm.getAttribute("data-id"))
+
+    // addToWatchedButton.addEventListener('click', addToWatchedList)
+    // addToQueueButton.addEventListener('click', addToQueueList)
 }
 
 function buildFilmData(data) {
@@ -35,16 +38,16 @@ function buildFilmData(data) {
 }
 
 function renderFilmData(data) {
-    // console.log(data);
+    console.log(data);
     const imageUrl = `https://image.tmdb.org/t/p/w500/${data["poster_path"]}`
     const name = data["original_title"];
     const vote = data["vote_average"];
     const votes = data["vote_count"];
     const popularity = data["popularity"];
     const overview = data["overview"];
-    // const genres = data["genres"]
+    const genres = data["genres"]
 
-    // console.log(genres);
+    console.log(genres);
 
     return `
         <img class="modal-window__image" src="${imageUrl}" alt="">
@@ -94,3 +97,4 @@ function closeFilmBackdrop(event) {
     }
 }
 
+export { openMovieDetails }

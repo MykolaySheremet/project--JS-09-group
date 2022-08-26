@@ -9,8 +9,8 @@ const HOME = document.querySelector('#home');
 const INPCONTAINER = document.querySelector('.input-container');
 const BTNCONTAINER = document.querySelector('.header-search__container');
 
-LIBRARY.addEventListener('click', onLibraryClick);
-HOME.addEventListener('click', onHomeClick);
+// LIBRARY.addEventListener('click', onLibraryClick);
+// HOME.addEventListener('click', onHomeClick);
 
 function onLibraryClick() {
   INPCONTAINER.innerHTML = '';
@@ -36,3 +36,6 @@ function onHomeClick() {
   BTNCONTAINER.classList.add('unvisible');
   HEADERTHUMB.classList.add('hidden');
 }
+
+export { onLibraryClick }
+export { onHomeClick }
