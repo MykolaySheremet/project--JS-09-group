@@ -31,4 +31,10 @@ document.onkeydown = function(evt) {
         }
     };
 
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') {
+closeFilmModalWindow()
+}
+});
+
 export { openModalWindow }
