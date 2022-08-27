@@ -1,12 +1,10 @@
 import { getMovieDetails } from './fetchFilms'
-// import { addToWatchedList } from './'
-// import { addToQueueList } from './'
+import { addToWatchedList } from './localeStorage'
+import { addToQueueList } from './localeStorage'
 
 const closeBtn = document.querySelector(".modal-window__close-btn")
 const backdrop = document.querySelector(".modal-backdrop")
 const modalData = document.querySelector(".modal-window__container")
-const addToWatchedButton = document.querySelector('.modal-window__button-watched')
-const addToQueueButton = document.querySelector('.modal-window__button-queue')
 
 function openMovieDetails(event) {
     let selectedFilm;
@@ -25,14 +23,16 @@ function openMovieDetails(event) {
 
     openFilmModalWindow(selectedFilm.getAttribute("data-id"))
 
-    // addToWatchedButton.addEventListener('click', addToWatchedList)
-    // addToQueueButton.addEventListener('click', addToQueueList)
 }
 
 function buildFilmData(data) {
     getMovieDetails(data).then(film => {
         modalData.innerHTML = ''
         modalData.insertAdjacentHTML('beforeend', renderFilmData(film.data))
+        let addToWatchedButton = document.querySelector(".modal-window__button-watched")
+        let addToQueueButton = document.querySelector(".modal-window__button-queue")
+        addToWatchedButton.addEventListener('click', () => addToWatchedList(data))
+        addToQueueButton.addEventListener('click', () => addToQueueList(data))
     })
     .catch('error')
 }
