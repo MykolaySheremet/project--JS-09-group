@@ -1,4 +1,7 @@
 
+// let addToWatchedButton = document.querySelector(".modal-window__button-watched")
+// let addToQueueButton = document.querySelector(".modal-window__button-queue")
+
 let watchItemsArray = []
 let queueItemsArray = []
 class localeStorageItem {
@@ -30,9 +33,11 @@ function addToWatchedList({ poster_path,
     first_air_date,
     vote_average,
     id }, addToWatchedButtonText, addToWatchedButton, checkedAddToWathedBtnClass) {
+
     
     watchItemsArray = localStorage.getItem("watchedFilms") ? JSON.parse(localStorage.getItem("watchedFilms")) : []
     localStorage.removeItem("watchedFilms")
+
     const watchedFilmsItem = new localeStorageItem(poster_path,
         original_title,
         original_name,
@@ -55,6 +60,7 @@ function addToWatchedList({ poster_path,
         }
     } else {
         watchItemsArray.push(watchedFilmsItem)
+
     }
     
 
@@ -81,6 +87,7 @@ function addToWatchedList({ poster_path,
     console.log(localStorage.getItem("watchedFilms"))
 }
 
+
 function checkLocaleStorage(array, id) {
     let flag = false
     for (let i = 0; i < array.length; i += 1) {
@@ -103,8 +110,10 @@ function addToQueueList({ poster_path,
     first_air_date,
     vote_average,
     id },addToQueueButtonText,addToQueueButton,checkedAddToQueueBtnClass) {
+
     queueItemsArray = localStorage.getItem("queueFilms") ? JSON.parse(localStorage.getItem("queueFilms")) : []
     localStorage.removeItem("queueFilms")
+
     const queueFilmsItem = new localeStorageItem(poster_path,
         original_title,
         original_name,
@@ -127,6 +136,8 @@ function addToQueueList({ poster_path,
         }
     } else {
         queueItemsArray.push(queueFilmsItem)
+
+
     }
     
     // if (queueItemsArray.includes(film)) {
