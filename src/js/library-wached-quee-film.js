@@ -3,8 +3,8 @@ import { checkContains } from "./libraries"
 const btnWached = document.querySelector('.library-first')
 const btnQuue = document.querySelector('.library-second')
 
-console.log(btnQuue)
-console.log(btnWached)
+const localStorageWached = localStorage.getItem('watchedFilms')
+
 
 btnWached.addEventListener('click', rendercards);
 
@@ -12,11 +12,23 @@ btnWached.addEventListener('click', rendercards);
 
 function rendercards() {
     checklocalstorage()
+
+
 }
 
 
-localStorage.getItem(watchedFilms)
-console.log(localStorage.getItem(watchedFilms));
+function checklocalstorage(localStorageWached) {
+    console.log(localStorageWached)
+
+    
+}
+
+
+
+
+console.log(localStorageWached);
+
+
 
 let dataFilmsByWatched = [];
 let dataFilmsByQueue = [];
