@@ -3,40 +3,66 @@ import defaultPosterMob from '../images/cinema480.jpg';
 import defaultPosterTab from '../images/cinema768.jpg';
 import defaultPosterDesc from '../images/cinema1280.jpg';
 
-import { getMovieDetails } from './fetchFilms';
+
+import { preloaderAgain } from '../js/preloader'
+
+import { getMovieDetails } from "./fetchFilms"
+
 // import { findGenresNames } from './renderTrendingMovies'
 // import { renderTrendingMovies } from './renderTrendingMovies'
 
 // console.log(renderTrendingMovies);
 
 const divConatiner = document.querySelector('.container-library');
-const btnWached = document.querySelector('.library-first');
-const btnQueue = document.querySelector('.library-second');
-const gallery = document.querySelector('.films_list');
+
+const btnWached = document.querySelector('.library-first')
+const btnQueue = document.querySelector('.library-second')
+const gallery = document.querySelector('.films_list')
+const preloader = document.getElementById('page_preloader')
+
+
+
 
 btnWached.addEventListener('click', renderWachedCards);
 btnQueue.addEventListener('click', renderQueue);
 
+
 function renderQueue() {
-  let localStorageQueue = localStorage.getItem('queueFilms');
 
-  if (localStorageQueue === null) {
-    clearContainIfLibrary();
-    renderIfLibraryEmpty();
-  } else if (localStorageQueue.length > 0) {
-    gallery.innerHTML = '';
-    const arrayLocalQueueFilm = JSON.parse(localStorageQueue);
+    let localStorageQueue = localStorage.getItem('queueFilms')
+    
+    if (localStorageQueue === null) {
 
-    for (const i of arrayLocalQueueFilm) {
-      const promisQueue = getMovieDetails(i);
-      promisQueue.then(
-        result => {
-          const typeList = generateTypeMovies(result.data.genres);
-          const year = new Date(result.data.release_date).getFullYear();
-          const imageUrl = result.data.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${result.data.poster_path}`
-            : `${result.data.defaultPoster}`;
-          const cardwachfil = `
+        clearContainIfLibrary();
+        renderIfLibraryEmpty();
+    }
+    else if (localStorageQueue.length > 0) {
+
+        if (preloader.classList.contains('done')) {
+            preloader.classList.remove('done')
+
+            setTimeout(function () {
+                if (!preloader.classList.contains('done')) {
+                preloader.classList.add('done')
+                }
+            }, 500);
+        }
+        
+        gallery.innerHTML = '';
+        const arrayLocalQueueFilm = JSON.parse(localStorageQueue)
+    
+        for (const i of arrayLocalQueueFilm) {
+            getMovieDetails(i).then(
+
+                result => {
+                    
+                    const typeList = generateTypeMovies(result.data.genres);
+                    const year = new Date(result.data.release_date).getFullYear()
+                    const imageUrl = result.data.poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${result.data.poster_path}`
+                        : `${result.data.defaultPoster}`;
+                    const cardwachfil = `
+
                             <li class = "film_card" data-id="${i}">
                             <div class="film_card__img">
                             <img class="film_card__img--block"
@@ -44,7 +70,7 @@ function renderQueue() {
                             alt="${result.data.original_title}">
                             </div>
                             <h3 class="film_card__title">${result.data.original_title}</h3>
-                            <p class="film_card__type">Привет</p>
+                            <p class="film_card__type">${typeList} | ${year}</p>
                             <p class="film_card__rating">Rating: ${result.data.vote_average}</p>
                             </li>
                             `;
@@ -58,25 +84,38 @@ function renderQueue() {
 }
 
 function renderWachedCards() {
-  let localStorageWached = localStorage.getItem('watchedFilms');
 
-  if (localStorageWached === null) {
-    clearContainIfLibrary();
-    renderIfLibraryEmpty();
-  } else if (localStorageWached.length > 0) {
-    gallery.innerHTML = '';
-    const arrayLocalWachFilm = JSON.parse(localStorageWached);
+    let localStorageWached = localStorage.getItem('watchedFilms')
 
-    for (const i of arrayLocalWachFilm) {
-      const promis = getMovieDetails(i);
-      promis.then(
-        result => {
-          const typeList = generateTypeMovies(result.data.genres);
-          const year = new Date(result.data.release_date).getFullYear();
-          const imageUrl = result.data.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${result.data.poster_path}`
-            : `${result.data.defaultPoster}`;
-          const cardwachfil = `
+    if (localStorageWached === null) {
+        clearContainIfLibrary();
+        renderIfLibraryEmpty();
+    }
+
+    else if (localStorageWached.length > 0) {
+        if (preloader.classList.contains('done')) {
+            preloader.classList.remove('done')
+
+            setTimeout(function () {
+                if (!preloader.classList.contains('done')) {
+                preloader.classList.add('done')
+                }
+            }, 500);
+        }
+
+        gallery.innerHTML = '';
+        const arrayLocalWachFilm = JSON.parse(localStorageWached)
+
+        for (const i of arrayLocalWachFilm) {
+            getMovieDetails(i).then(
+                result => {
+                    const typeList = generateTypeMovies(result.data.genres);
+                    const year = new Date(result.data.release_date).getFullYear()
+                    const imageUrl = result.data.poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${result.data.poster_path}`
+                        : `${result.data.defaultPoster}`;
+                    const cardwachfil = `
+
                         <li class = "film_card" data-id="${i}">
                         <div class="film_card__img">
                         <img class="film_card__img--block"
