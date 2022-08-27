@@ -17,7 +17,7 @@ try {
           first_air_date,
           vote_average,
           id,
-        }) => {
+      }) => {
             const imageUrl = poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
             : `${defaultPoster}`;
