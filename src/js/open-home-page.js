@@ -8,6 +8,15 @@ import { openLibrary } from './open-library'
 import { toggleTheme } from './light-theme-switcher';
 import { openMovieDetails } from './open-movie-details'
 
+// /Прелоадер - поки так не працює закомінитв
+// import { openAndHiddenLoader } from './preloader';
+
+// const divPreloader = document.querySelector('.preloader');
+// window.addEventListener('load', openAndHiddenLoader);
+
+
+
+
 const LIBRARY = document.querySelector('#library');
 const HOME = document.querySelector('#home');
 // const searchInput = document.querySelector('header-search');
@@ -24,7 +33,8 @@ gallery.addEventListener('click', openMovieDetails)
 paginationButtons.addEventListener("click", selectPage)
 openBtn.addEventListener('click', openModalWindow);
 
-function openHomePage () {
+function openHomePage() {
+    // openAndHiddenLoader()
     getTrendingMovies(1)
     .then(film => {
         renderTrendingMovies(film.data.results)

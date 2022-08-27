@@ -1,14 +1,16 @@
 
 const divPreloader = document.querySelector('.preloader');
-window.addEventListener('load', hiddenLoader);
+window.addEventListener('load', openAndHiddenLoader);
 
-function hiddenLoader() {
+function openAndHiddenLoader() {
     divPreloader.classList.add('visually-hidden');
   setTimeout(() => {
     divPreloader.remove();
   }, 1000);
 };
 
+
+export { openAndHiddenLoader };
 
 
 
