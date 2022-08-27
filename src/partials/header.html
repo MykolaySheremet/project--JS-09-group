@@ -12,24 +12,27 @@
             <button id="home" class="nav-link__item current">HOME</button>
           </li>
           <li class="menu-nav__link">
-
-            <button id="library" class="nav-link__item btn link-library">MY LIBRARY</button>
-
+            <button id="library" class="nav-link__item btn link-library">
+              MY LIBRARY
+            </button>
           </li>
         </ul>
       </div>
 
       <div class="header-main">
-        <form action="#" class="header-search">
+        <form action="#" class="header-search" id="search-query">
           <div class="input-container">
             <input
+              name="querySearch"
               class="search-input"
               type="text"
               placeholder="Movie search"
             />
-            <svg class="search-icon">
-              <use href="./images/symbol-defs.svg#icon-search"></use>
-            </svg>
+            <button type="submit">
+              <svg class="search-icon">
+                <use href="./images/symbol-defs.svg#icon-search"></use>
+              </svg>
+            </button>
           </div>
           <div class="header-search__container unvisible">
             <button class="library-button library-first">WATCHED</button>
