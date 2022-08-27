@@ -1,25 +1,34 @@
 import { checkContains } from "./libraries"
 
+
 import axios from "axios"
 
 const KEY = '2acc48bc8101b89794229029120e4b70'
 const BASE_URL = 'https://api.themoviedb.org/3/'
 
-import { getMovieDetails } from "./fetchFilms"
+// import { getMovieDetails } from "./fetchFilms"
 
-console.log(getMovieDetails);
+// console.log(getMovieDetails);
 
-const btnWached = document.querySelector('.library-first')
-const btnQueue = document.querySelector('.library-second')
-const gallery = document.querySelector('.films_list')
+// const btnWached = document.querySelector('.library-first')
+// const btnQueue = document.querySelector('.library-second')
+// const gallery = document.querySelector('.films_list')
 
-btnWached.addEventListener('click', rendercards);
-btnQueue.addEventListener('click', renderQueue);
+// btnWached.addEventListener('click', renderWachedCards);
+// btnQueue.addEventListener('click', renderQueue);
 
 function renderQueue() {
     let localStorageQueue = localStorage.getItem('queueFilms')
+    
+    // console.log(localStorageQueue);
 
-    if (localStorageQueue.length > 0) {
+    if (localStorageQueue === null) {
+        console.log(localStorageQueue.length);
+        checkContains();
+        return;
+    }
+
+    else if (localStorageQueue.length > 0) {
         gallery.innerHTML = '';
         const arrayLocalQueueFilm = JSON.parse(localStorageQueue)
         console.log(arrayLocalQueueFilm);
@@ -50,15 +59,16 @@ function renderQueue() {
                 error => console.log(error)
             );
         }
+    
     }
 }
 
-function rendercards() {
+function renderWachedCards() {
     let localStorageWached = localStorage.getItem('watchedFilms')
     if (localStorageWached.length > 0) {
         gallery.innerHTML = '';
         const arrayLocalWachFilm = JSON.parse(localStorageWached)
-        console.log(arrayLocalWachFilm);
+        // console.log(arrayLocalWachFilm);
 
 
         for (const i of arrayLocalWachFilm) {
@@ -85,7 +95,7 @@ function rendercards() {
                     // console.log(result.data.poster_path)
                     // console.log(result.data.original_title)
                     // console.log(result.data.original_name)
-                    // console.log(result.data.genre_ids)
+                    console.log(result.data.genre_ids)
                     // console.log(result.data.first_air_date)
                     // console.log(result.data.vote_average)
                     // console.log(result.data.release_date)
