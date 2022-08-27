@@ -28,8 +28,10 @@ function openMovieDetails(event) {
     };
 
     openFilmModalWindow(selectedFilm.getAttribute("data-id"))
-    createWathedFilmsBtnName(selectedFilm.getAttribute("data-id"))
-    createQueueFilmsBtnName(selectedFilm.getAttribute("data-id"))
+
+    // createWathedFilmsBtnName(selectedFilm.getAttribute("data-id"))
+    // createQueueFilmsBtnName(selectedFilm.getAttribute("data-id"))
+
 }
 
 function buildFilmData(data) {
@@ -38,8 +40,10 @@ function buildFilmData(data) {
         modalData.insertAdjacentHTML('beforeend', renderFilmData(film.data))
         let addToWatchedButton = document.querySelector(".modal-window__button-watched")
         let addToQueueButton = document.querySelector(".modal-window__button-queue")
-        addToWatchedButton.addEventListener('click', () => addToWatchedList(data,addToWatchedButtonText,addToWatchedButton,checkedAddToWathedBtnClass))
-        addToQueueButton.addEventListener('click', () => addToQueueList(data,addToQueueButtonText,addToQueueButton,checkedAddToQueueBtnClass))
+
+        addToWatchedButton.addEventListener('click', () => addToWatchedList(film.data,addToWatchedButtonText,addToWatchedButton,checkedAddToWathedBtnClass))
+        addToQueueButton.addEventListener('click', () => addToQueueList(film.data,addToQueueButtonText,addToQueueButton,checkedAddToQueueBtnClass))
+
     })
     .catch('error')
 }
@@ -126,17 +130,20 @@ function createWathedFilmsBtnName(id) {
     }
 }
 
-function createQueueFilmsBtnName(id) {
-    let queueItemsArray = localStorage.getItem("queueFilms") ? JSON.parse(localStorage.getItem("queueFilms")) : []
-    if (queueItemsArray.includes(id)) {
-        addToQueueButtonText = "remove to queue"
-        checkedAddToQueueBtnClass = "modal-window__button-queue-chacked"
-        console.log("queue change")
-    }
-    else {
-        addToQueueButtonText = "add to queue"
-        checkedAddToQueueBtnClass = ""
-    }
-}
+
+// function createQueueFilmsBtnName(id) {
+//     let queueItemsArray = localStorage.getItem("queueFilms") ? JSON.parse(localStorage.getItem("queueFilms")) : []
+//     if (queueItemsArray.includes(id)) {
+//         addToQueueButtonText = "remove to queue"
+//         checkedAddToQueueBtnClass = "modal-window__button-queue-chacked"
+//         console.log("queue change")
+//     }
+//     else {
+//         addToQueueButtonText = "add to queue"
+//         checkedAddToQueueBtnClass = ""
+//     }
+// }
+
+
 
 export { openMovieDetails }
