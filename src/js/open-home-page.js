@@ -34,4 +34,5 @@ function openHomePage () {
     .catch(error => console.log(error))
 }
 
+
 export { openHomePage }
