@@ -8,10 +8,6 @@ import { preloaderAgain } from '../js/preloader'
 
 import { getMovieDetails } from "./fetchFilms"
 
-// import { findGenresNames } from './renderTrendingMovies'
-// import { renderTrendingMovies } from './renderTrendingMovies'
-
-// console.log(renderTrendingMovies);
 
 const divConatiner = document.querySelector('.container-library');
 
@@ -33,29 +29,19 @@ function renderQueue() {
 
   if (localStorageQueue === null) {
 
-    clearContainIfLibrary();
-    renderIfLibraryEmpty();
-    return;
+    renderEmptyCardLibrary()
+    return
   }
 
-  if (localStorageQueue.length === 0) {
+  if (localStorageQueue.length === 2) {
 
-    clearContainIfLibrary();
-    renderIfLibraryEmpty();
+    renderEmptyCardLibrary
     return;
-  }
+  } 
 
-  else if (localStorageQueue.length > 0) {
-
-      if (preloader.classList.contains('done')) {
-          preloader.classList.remove('done')
-
-          setTimeout(function () {
-              if (!preloader.classList.contains('done')) {
-              preloader.classList.add('done')
-              }
-            }, 500);
-          }
+  else if (localStorageQueue.length > 2) {
+    
+    preloaderfunction()
         
     gallery.innerHTML = '';
     
@@ -71,24 +57,24 @@ function renderWachedCards() {
   let localStorageWached = localStorage.getItem('watchedFilms')
 
   if (localStorageWached === null) {
-      
-    checkContains()
+          
+    renderEmptyCardLibrary()
     return;
   }
 
-  if (localStorageWached.length === 0) {
+  if (localStorageWached.length === 2) {
 
-    checkContains()
+    renderEmptyCardLibrary()
     return;
   }
 
-  else if (localStorageWached.length > 0) {
+  else if (localStorageWached.length > 2) {
 
     preloaderfunction()
 
     gallery.innerHTML = '';
     const arrayLocalWachFilm = JSON.parse(localStorageWached)
-    
+
     renderListWached(arrayLocalWachFilm);
     
   }
@@ -108,8 +94,6 @@ function preloaderfunction() {
   }
     
 }
-
-
 
 
 function renderListWached(arays) {
@@ -154,12 +138,12 @@ function generateTypeMovies(types) {
   return typeAray;
 }
 
-function checkContains() {
-  clearContainIfLibrary();
-  renderIfLibraryEmpty();
+function renderEmptyCardLibrary() {
+  clearContainIfLibraryEmpty();
+  renderDefaultLibrary();
 }
 
-function renderIfLibraryEmpty() {
+function renderDefaultLibrary() {
   let rezult = '';
 
   if (window.matchMedia('(min-width: 1280px)').matches) {
@@ -185,8 +169,8 @@ function renderIfLibraryEmpty() {
   }
 }
 
-function clearContainIfLibrary() {
+function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export { checkContains };
+export {renderWachedCards };
