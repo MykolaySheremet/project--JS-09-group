@@ -25,59 +25,58 @@ btnQueue.addEventListener('click', renderQueueCards);
 
 function renderQueueCards() {
 
-  let localStorageQueue = localStorage.getItem('queueFilms')
+  let localStorageQueue = localStorage.getItem('queueFilms');
+  let arraylocalStorageQueue = JSON.parse(localStorageQueue);
 
-  checkActiveClass()
+  checkActiveClassQueueBtn();
 
   if (localStorageQueue === null) {
 
-    renderEmptyCardLibrary()
-    return
+    renderEmptyCardLibrary();
+    return;
   }
 
-  if (localStorageQueue.length === 2) {
+  if (arraylocalStorageQueue.length === 0) {
 
-    renderEmptyCardLibrary
+    renderEmptyCardLibrary();
     return;
   } 
 
-  else if (localStorageQueue.length > 2) {
+  else if (arraylocalStorageQueue.length > 0) {
     
     preloaderfunction()
         
     gallery.innerHTML = '';
-    
-    const arrayLocalQueueFilm = JSON.parse(localStorageQueue);
 
-    renderListWached(arrayLocalQueueFilm);
+    renderListFilms(arraylocalStorageQueue);
     
   }
 }
 
 function renderWachedCards() {
 
-  let localStorageWached = localStorage.getItem('watchedFilms')
+  let localStorageWached = localStorage.getItem('watchedFilms');
+  let arrayLocalWachFilm = JSON.parse(localStorageWached);
+
+  checkActiveClassWachedBtn();
 
   if (localStorageWached === null) {
-          
-    renderEmptyCardLibrary()
+    renderEmptyCardLibrary();
     return;
   }
 
-  if (localStorageWached.length === 2) {
-
-    renderEmptyCardLibrary()
+  if (arrayLocalWachFilm.length === 0) {
+    renderEmptyCardLibrary();
     return;
   }
 
-  else if (localStorageWached.length > 2) {
+  else if (arrayLocalWachFilm.length > 0) {
 
-    preloaderfunction()
+    preloaderfunction();
 
     gallery.innerHTML = '';
-    const arrayLocalWachFilm = JSON.parse(localStorageWached)
 
-    renderListWached(arrayLocalWachFilm);
+    renderListFilms(arrayLocalWachFilm);
     
   }
 }
@@ -91,12 +90,13 @@ function preloaderfunction() {
                 if (!preloader.classList.contains('done')) {
                 preloader.classList.add('done')
                 }
-            }, 500);
+            }, 300);
   }
     
 }
 
-function renderListWached(arays) {
+function renderListFilms(arays) {
+  
   for (const aray of arays) {
     
     const imageUrl = aray.poster_path
@@ -110,7 +110,7 @@ function renderListWached(arays) {
                         <img class="film_card__img--block"
                         src=${imageUrl}
                         alt="${aray.original_title}">
-                        </div>
+                        </div class="film_card__box>
                         <h3 class="film_card__title">${aray.original_title}</h3>
                         <p class="film_card__type">${typeList} | ${year}</p>
                         <p class="film_card__rating">Rating: ${aray.vote_average}</p>
@@ -134,16 +134,25 @@ function generateTypeMovies(types) {
   }
   const typeFilmsStr = typeAray.join(', ');
 
-  return typeAray;
+  return typeFilmsStr;
 }
 
-function checkActiveClass() {
+function checkActiveClassQueueBtn() {
 
-  if (!btnQueue.classList.contains('modal-window__button-watched')) {
-     btnWached.classList.remove('modal-window__button-watched')
+  if (!btnQueue.classList.contains('active_btn')) {
+    btnQueue.classList.add('active_btn');
+    btnWached.classList.remove('active_btn')
   }
-  
 }
+
+function checkActiveClassWachedBtn() {
+  if (!btnWached.classList.contains('active_btn')) {
+    btnWached.classList.add('active_btn')
+    btnQueue.classList.remove('active_btn')
+  }
+}
+
+
 
 function renderEmptyCardLibrary() {
   preloadering();
@@ -181,4 +190,4 @@ function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export {renderWachedCards };
+export {renderWachedCards, checkActiveClassWachedBtn };
