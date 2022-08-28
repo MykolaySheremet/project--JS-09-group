@@ -1,61 +1,61 @@
 // export const teamItems = [
 //     {
-//       name: 'Teammate 1',
+//       name: 'Artem Vazovskin',
 //       preview:
 //         'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
 //       original:
 //         'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
-//       description: 'Hokkaido Flower',
+//       description: 'team lead',
 //       role: 'Teamlead',
 //       quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //     },
 //     { 
-//       name: 'Teammate 2',
+//       name: 'Oleksandr Volik',
 //       preview:
 //         'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg',
 //       original:
 //         'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
-//       description: 'Container Haulage Freight',
+//       description: 'scrum-master',
 //       role: 'Scrum-master',
 //       quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //     },
 //     {
-//       name: 'Teammate 3',  
+//       name: 'Serhii Isaev',  
 //       preview:
 //         'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785__340.jpg',
 //       original:
 //         'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
-//       description: 'Aerial Beach View',
+//       description: 'developer',
 //       role: 'Frontend developer',
 //       quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //     },
 //     {
-//       name: 'Teammate 4',
+//       name: 'Victoria Bulakh',
 //       preview:
 //         'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
 //       original:
 //         'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
-//       description: 'Flower Blooms',
+//       description: 'developer',
 //       role: 'Frontend developer',
 //       quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //     },
 //     {
-//         name: 'Teammate 5',
+//         name: 'Nicolai Pustylnyi',
 //         preview:
 //           'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
 //         original:
 //           'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
-//         description: 'Hokkaido Flower',
+//         description: 'developer',
 //         role: 'Frontend developer',
 //         quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //       },
 //       { 
-//         name: 'Teammate 6',
+//         name: 'Serhii ',
 //         preview:
 //           'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg',
 //         original:
 //           'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
-//         description: 'Container Haulage Freight',
+//         description: 'developer',
 //         role: 'Frontend developer',
 //         quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //       },
@@ -65,7 +65,7 @@
 //           'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785__340.jpg',
 //         original:
 //           'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
-//         description: 'Aerial Beach View', 
+//         description: 'developer', 
 //         role: 'Frontend developer',
 //         quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //       },
@@ -75,7 +75,7 @@
 //           'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
 //         original:
 //           'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
-//         description: 'Flower Blooms', 
+//         description: 'developer', 
 //         role: 'Frontend developer',
 //         quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis ultrices scelerisque. Nunc sodales nulla in enim efficitur sagittis.',
 //       },
