@@ -22,7 +22,21 @@ function onLibraryClick() {
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
   headerThumb.classList.remove('hidden');
-  headerRef.style.backgroundImage = `url(${backImage}`;
+
+  if (window.matchMedia('(min-width: 1280px)').matches) {
+    headerRef.style.backgroundImage = `url(${backImageTablet}`;
+    return;
+  }
+
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    headerRef.style.backgroundImage = `url(${backImagePhone}`;
+    return;
+  }
+
+  if (window.matchMedia('(min-width: 0px)').matches) {
+    headerRef.style.backgroundImage = `url(${backImage}`;
+    return;
+  }
 }
 
 function onHomeClick() {
@@ -40,21 +54,6 @@ function onHomeClick() {
   btnsContainer.classList.add('unvisible');
   headerThumb.classList.add('hidden');
   headerRef.style.backgroundImage = `url(${mainBackImage}`;
-}
-
-if (window.matchMedia('(min-width: 1280px)').matches) {
-  headerRef.style.backgroundImage = `url(${backImageTablet}`;
-  return;
-}
-
-if (window.matchMedia('(min-width: 768px)').matches) {
-  headerRef.style.backgroundImage = `url(${backImagePhone}`;
-  return;
-}
-
-if (window.matchMedia('(min-width: 0px)').matches) {
-  headerRef.style.backgroundImage = `url(${backImage}`;
-  return;
 }
 
 export { onLibraryClick, onHomeClick };
