@@ -40,6 +40,7 @@ function onLibraryClick() {
 }
 
 function onHomeClick() {
+  headerRef.style.backgroundImage = '';
   inputContainer.innerHTML = `<input
 	class="search-input"
 	type="text"
@@ -53,7 +54,7 @@ function onHomeClick() {
   libraryBtn.classList.remove('current');
   btnsContainer.classList.add('unvisible');
   headerThumb.classList.add('hidden');
-  headerRef.style.backgroundImage = `url(${mainBackImage}`;
+  //headerRef.style.backgroundImage = `url(${mainBackImage}`;
 }
 
 export { onLibraryClick, onHomeClick };
