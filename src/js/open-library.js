@@ -1,6 +1,6 @@
 import { onLibraryClick } from './header';
-import { renderWachedCards } from './libraries'
-// import { openQueueMoviesList } from './'
+import { renderWachedCards } from './libraries';
+import { preloadering } from './preloader';
 
 const watchedMoviesListButton = document.querySelector('.library-first');
 const queueMoviesListButton = document.querySelector('.library-second');
@@ -9,8 +9,16 @@ const queueMoviesListButton = document.querySelector('.library-second');
 // queueMoviesListButton.addEventListener('click', openQueueMoviesList)
 
 function openLibrary() {
+  preloadering();
+  activebtnWached();
   onLibraryClick();
-  renderWachedCards()
+  renderWachedCards();
+}
+
+function activebtnWached() {
+  if (!watchedMoviesListButton.classList.contains('modal-window__button-watched')) {
+     watchedMoviesListButton.classList.add('modal-window__button-watched')
+  }
 }
 
 export { openLibrary };

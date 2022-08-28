@@ -4,7 +4,7 @@ import defaultPosterTab from '../images/cinema768.jpg';
 import defaultPosterDesc from '../images/cinema1280.jpg';
 
 
-import { preloaderAgain } from '../js/preloader'
+import { preloadering } from '../js/preloader'
 
 import { getMovieDetails } from "./fetchFilms"
 
@@ -20,12 +20,14 @@ const preloader = document.getElementById('page_preloader')
 
 
 btnWached.addEventListener('click', renderWachedCards);
-btnQueue.addEventListener('click', renderQueue);
+btnQueue.addEventListener('click', renderQueueCards);
 
 
-function renderQueue() {
+function renderQueueCards() {
 
   let localStorageQueue = localStorage.getItem('queueFilms')
+
+  checkActiveClass()
 
   if (localStorageQueue === null) {
 
@@ -80,7 +82,6 @@ function renderWachedCards() {
   }
 }
 
-
 function preloaderfunction() {
 
   if (preloader.classList.contains('done')) {
@@ -94,7 +95,6 @@ function preloaderfunction() {
   }
     
 }
-
 
 function renderListWached(arays) {
   for (const aray of arays) {
@@ -120,7 +120,6 @@ function renderListWached(arays) {
   }
 }
 
-
 function generateTypeMovies(types) {
   const typeFilms = [];
 
@@ -138,7 +137,16 @@ function generateTypeMovies(types) {
   return typeAray;
 }
 
+function checkActiveClass() {
+
+  if (!btnQueue.classList.contains('modal-window__button-watched')) {
+     btnWached.classList.remove('modal-window__button-watched')
+  }
+  
+}
+
 function renderEmptyCardLibrary() {
+  preloadering();
   clearContainIfLibraryEmpty();
   renderDefaultLibrary();
 }
