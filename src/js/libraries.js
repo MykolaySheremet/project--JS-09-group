@@ -15,6 +15,11 @@ const btnWached = document.querySelector('.library-first')
 const btnQueue = document.querySelector('.library-second')
 const gallery = document.querySelector('.films_list')
 const preloader = document.getElementById('page_preloader')
+const removeBtnfromQueue = document.querySelector('btn_queue_forlibrary')
+const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
+
+
+// removeBtnfromQueue.addEventListener('click', renderQueueCards);
 
 
 
@@ -24,6 +29,7 @@ btnQueue.addEventListener('click', renderQueueCards);
 
 
 function renderQueueCards() {
+
 
   let localStorageQueue = localStorage.getItem('queueFilms');
   let arraylocalStorageQueue = JSON.parse(localStorageQueue);
@@ -96,8 +102,24 @@ function preloaderfunction() {
 }
 
 function renderListFilms(arays) {
+
+  let amounCardOnPage = 18;
+
+  let currentPage = 1;
+
+  let count = 1;
   
   for (const aray of arays) {
+
+    if (((count - 1) / amounCardOnPage) === Math.floor(((count - 1) / amounCardOnPage))) {
+        currentPage++;
+      if (((count - 1) / amounCardOnPage) === 0) {
+        currentPage = 1;
+      }
+      
+      clearContainIfLibraryEmpty();
+     }
+    count++;
     
     const imageUrl = aray.poster_path
       ? `https://image.tmdb.org/t/p/w500/${aray.poster_path}`
@@ -105,15 +127,17 @@ function renderListFilms(arays) {
     const year = new Date(aray.release_date).getFullYear();
     const typeList = generateTypeMovies(aray.genres);
     const cardwachfil = `
-                        <li class = "film_card" data-id="${aray.i}">
+                        <li class = "film_card" data-id="${aray.id}">
                         <div class="film_card__img">
                         <img class="film_card__img--block"
                         src=${imageUrl}
                         alt="${aray.original_title}">
-                        </div class="film_card__box>
-                        <h3 class="film_card__title">${aray.original_title}</h3>
-                        <p class="film_card__type">${typeList} | ${year}</p>
-                        <p class="film_card__rating">Rating: ${aray.vote_average}</p>
+                        </div>
+                        <div class="film_card__box">
+                          <h3 class="film_card__title">${aray.original_title}</h3>
+                          <p class="film_card__type">${typeList} | ${year}</p>
+                          <p class="film_card__rating">Rating: ${aray.vote_average}</p>
+                        </div>
                         </li>
                         `;
     gallery.insertAdjacentHTML('beforeend', cardwachfil);
@@ -190,4 +214,4 @@ function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export {renderWachedCards, checkActiveClassWachedBtn };
+export {renderWachedCards, checkActiveClassWachedBtn, renderQueueCards };
