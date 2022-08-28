@@ -1,7 +1,8 @@
 // const openBtn = document.querySelector('.footer__authorship')
 const closeBtn = document.querySelector('.modal__btn')
 const backdrop = document.querySelector('.backdrop')
-// const modalWindow = document.querySelector('.modal')
+const modalWindow = document.querySelector('.modal')
+let scrollDelay = null
 
 // openBtn.addEventListener('click', openModalWindow);
 
@@ -9,10 +10,12 @@ function openModalWindow() {
     backdrop.classList.remove('is-hidden');
     closeBtn.addEventListener('click', closeModalWindow);
     backdrop.addEventListener('click', closeToBackdrop);
+    pageScroll()
 }
 
 function closeModalWindow() {
     backdrop.classList.add('is-hidden');
+    clearTimeout(scrollDelay)
     closeBtn.removeEventListener('click', closeModalWindow);
     backdrop.removeEventListener('click', closeToBackdrop);
 }
@@ -35,5 +38,10 @@ if (e.key === 'Escape') {
 closeFilmModalWindow()
 }
 });
+
+function pageScroll() {
+  modalWindow.scrollBy(0,1);
+  scrollDelay = setTimeout(pageScroll,10);
+}
 
 export { openModalWindow }
