@@ -29,71 +29,75 @@ btnQueue.addEventListener('click', renderQueue);
 
 function renderQueue() {
 
-    let localStorageQueue = localStorage.getItem('queueFilms')
-    
-    if (localStorageQueue === null) {
+  let localStorageQueue = localStorage.getItem('queueFilms')
 
-        clearContainIfLibrary();
-        renderIfLibraryEmpty();
-    }
-    else if (localStorageQueue.length > 0) {
+  if (localStorageQueue === null) {
 
-        if (preloader.classList.contains('done')) {
-            preloader.classList.remove('done')
+    clearContainIfLibrary();
+    renderIfLibraryEmpty();
+    return;
+  }
 
-            setTimeout(function () {
-                if (!preloader.classList.contains('done')) {
-                preloader.classList.add('done')
-                }
+  if (localStorageQueue.length === 0) {
+
+    clearContainIfLibrary();
+    renderIfLibraryEmpty();
+    return;
+  }
+
+  else if (localStorageQueue.length > 0) {
+
+      if (preloader.classList.contains('done')) {
+          preloader.classList.remove('done')
+
+          setTimeout(function () {
+              if (!preloader.classList.contains('done')) {
+              preloader.classList.add('done')
+              }
             }, 500);
-        }
+          }
         
-        gallery.innerHTML = '';
-        const arrayLocalQueueFilm = JSON.parse(localStorageQueue)
+    gallery.innerHTML = '';
     
-        for (const i of arrayLocalQueueFilm) {
-            getMovieDetails(i).then(
+    const arrayLocalQueueFilm = JSON.parse(localStorageQueue);
 
-                result => {
-                    
-                    const typeList = generateTypeMovies(result.data.genres);
-                    const year = new Date(result.data.release_date).getFullYear()
-                    const imageUrl = result.data.poster_path
-                        ? `https://image.tmdb.org/t/p/w500/${result.data.poster_path}`
-                        : `${result.data.defaultPoster}`;
-                    const cardwachfil = `
-
-                            <li class = "film_card" data-id="${i}">
-                            <div class="film_card__img">
-                            <img class="film_card__img--block"
-                            src=${imageUrl}
-                            alt="${result.data.original_title}">
-                            </div>
-                            <h3 class="film_card__title">${result.data.original_title}</h3>
-                            <p class="film_card__type">${typeList} | ${year}</p>
-                            <p class="film_card__rating">Rating: ${result.data.vote_average}</p>
-                            </li>
-                            `;
-          gallery.insertAdjacentHTML('beforeend', cardwachfil);
-        },
-
-        error => console.log(error)
-      );
-    }
+    renderListWached(arrayLocalQueueFilm);
+    
   }
 }
 
 function renderWachedCards() {
 
-    let localStorageWached = localStorage.getItem('watchedFilms')
+  let localStorageWached = localStorage.getItem('watchedFilms')
 
-    if (localStorageWached === null) {
-        clearContainIfLibrary();
-        renderIfLibraryEmpty();
-    }
+  if (localStorageWached === null) {
+      
+    checkContains()
+    return;
+  }
 
-    else if (localStorageWached.length > 0) {
-        if (preloader.classList.contains('done')) {
+  if (localStorageWached.length === 0) {
+
+    checkContains()
+    return;
+  }
+
+  else if (localStorageWached.length > 0) {
+
+    preloaderfunction()
+
+    gallery.innerHTML = '';
+    const arrayLocalWachFilm = JSON.parse(localStorageWached)
+    
+    renderListWached(arrayLocalWachFilm);
+    
+  }
+}
+
+
+function preloaderfunction() {
+
+  if (preloader.classList.contains('done')) {
             preloader.classList.remove('done')
 
             setTimeout(function () {
@@ -101,40 +105,38 @@ function renderWachedCards() {
                 preloader.classList.add('done')
                 }
             }, 500);
-        }
+  }
+    
+}
 
-        gallery.innerHTML = '';
-        const arrayLocalWachFilm = JSON.parse(localStorageWached)
 
-        for (const i of arrayLocalWachFilm) {
-            getMovieDetails(i).then(
-                result => {
-                    const typeList = generateTypeMovies(result.data.genres);
-                    const year = new Date(result.data.release_date).getFullYear()
-                    const imageUrl = result.data.poster_path
-                        ? `https://image.tmdb.org/t/p/w500/${result.data.poster_path}`
-                        : `${result.data.defaultPoster}`;
-                    const cardwachfil = `
 
-                        <li class = "film_card" data-id="${i}">
+
+function renderListWached(arays) {
+  for (const aray of arays) {
+    
+    const imageUrl = aray.poster_path
+      ? `https://image.tmdb.org/t/p/w500/${aray.poster_path}`
+      : `${aray.defaultPoster}`;
+    const year = new Date(aray.release_date).getFullYear();
+    const typeList = generateTypeMovies(aray.genres);
+    const cardwachfil = `
+                        <li class = "film_card" data-id="${aray.i}">
                         <div class="film_card__img">
                         <img class="film_card__img--block"
                         src=${imageUrl}
-                        alt="${result.data.original_title}">
+                        alt="${aray.original_title}">
                         </div>
-                        <h3 class="film_card__title">${result.data.original_title}</h3>
+                        <h3 class="film_card__title">${aray.original_title}</h3>
                         <p class="film_card__type">${typeList} | ${year}</p>
-                        <p class="film_card__rating">Rating: ${result.data.vote_average}</p>
+                        <p class="film_card__rating">Rating: ${aray.vote_average}</p>
                         </li>
                         `;
-          gallery.insertAdjacentHTML('beforeend', cardwachfil);
-        },
-
-        error => console.log(error)
-      );
-    }
+    gallery.insertAdjacentHTML('beforeend', cardwachfil);
   }
 }
+
+
 function generateTypeMovies(types) {
   const typeFilms = [];
 
