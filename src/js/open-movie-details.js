@@ -1,5 +1,6 @@
 import { getMovieDetails } from './fetchFilms'
 import { addToQueueList, addToWatchedList, checkLocaleStorageModalWindow } from './localeStorage'
+import{ renderQueueCards, renderWachedCards } from './libraries'
 
 const closeBtn = document.querySelector(".modal-window__close-btn")
 const backdrop = document.querySelector(".modal-backdrop")
@@ -39,7 +40,7 @@ function buildFilmData(data) {
         modalData.insertAdjacentHTML('beforeend', renderFilmData(film.data))
         let addToWatchedButton = document.querySelector(".modal-window__button-watched")
         let addToQueueButton = document.querySelector(".modal-window__button-queue")
-        addToWatchedButton.addEventListener('click', () => addToWatchedList(film.data,addToWatchedButtonText,addToWatchedButton) )
+        addToWatchedButton.addEventListener('click', () => addToWatchedList(film.data,addToWatchedButtonText,addToWatchedButton))
         addToQueueButton.addEventListener('click', () => addToQueueList(film.data,addToQueueButtonText,addToQueueButton))
 
     })
@@ -81,8 +82,8 @@ function renderFilmData(data) {
                 <h3 class="modal-window__info-header">About</h3>
                 <p class="modal-window__info-text">${overview}</p>
                 <div class = "modal-window__button-wrapper">
-                    <button class="modal-window__button-watched ${checkedAddToWathedBtnClass}">${addToWatchedButtonText}</button>
-                    <button class="modal-window__button-queue ${checkedAddToQueueBtnClass}">${addToQueueButtonText}</button>
+                    <button class="modal-window__button-watched btn_wached_forlibrary ${checkedAddToWathedBtnClass}">${addToWatchedButtonText}</button>
+                    <button class="modal-window__button-queue btn_queue_forlibrary ${checkedAddToQueueBtnClass}">${addToQueueButtonText}</button>
                 </div>    
             </div>
     `
