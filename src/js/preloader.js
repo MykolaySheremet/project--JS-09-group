@@ -10,7 +10,7 @@ function preloadering() {
       preloader.classList.add('done')
     }
     
-  }, 600);
+  }, 500);
 }
 }
 
@@ -19,12 +19,12 @@ export { preloadering }
 
 
 
-// const images = document.images
+// const images = document.querySelectorAll('img')
 // const lengthImagesCollection = images.length
 
 
 // console.log(images)
-// console.log(images.length)
+// console.log(lengthImagesCollection)
 
 
 
@@ -35,19 +35,23 @@ export { preloadering }
 
 
 
-// var
-//   preloader = document.getElementById('page_preloader');
-//   images = document.images,
-//   images_total_count = images.length,
-//   images_loaded_count = 0,
-//   perc_display = document.getElementById('load_perc')
+
+// const preloader = document.getElementById('page_preloader');
+// const images = document.images;
+  // images_total_count = images.length,
+  // images_loaded_count = 0,
+  // perc_display = document.getElementById('load_perc')
+
+
 
 
 
 
 
 // console.log(images)
-// console.log(images.length)
+// console.log(images)
+  
+//   getlenght(images)
 
 
 
