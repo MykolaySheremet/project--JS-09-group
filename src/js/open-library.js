@@ -1,6 +1,5 @@
 import { onLibraryClick } from './header';
-import { checkContains } from './libraries';
-// import { openWatchedMoviesList } from './'
+import { renderWachedCards } from './libraries'
 // import { openQueueMoviesList } from './'
 
 const watchedMoviesListButton = document.querySelector('.library-first');
@@ -11,8 +10,10 @@ const queueMoviesListButton = document.querySelector('.library-second');
 
 function openLibrary() {
   onLibraryClick();
-  checkContains();
-  // openWatchedMoviesList()
+  renderWachedCards()
 }
 
 export { openLibrary };
+  
+  
+
