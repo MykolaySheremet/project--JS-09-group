@@ -298,4 +298,4 @@ function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export { renderWachedCards, renderWatchedMoviesList,renderQueueMoviesList, renderQueueCards, checkActiveClassWachedBtn };
+export { renderWachedCards, clearDefaultLibrary,renderWatchedMoviesList,renderQueueMoviesList, renderQueueCards, checkActiveClassWachedBtn };

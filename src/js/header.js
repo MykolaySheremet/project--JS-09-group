@@ -1,3 +1,4 @@
+import {clearDefaultLibrary} from './libraries'
 const headerRef = document.querySelector('.header');
 const headerThumb = document.querySelector('.header-thumb');
 const headerContainer = document.querySelector('.header-container');
@@ -52,6 +53,7 @@ function onLibraryClick() {
 }
 
 function onHomeClick() {
+  clearDefaultLibrary();
   headerRef.style.backgroundImage = '';
   inputContainer.innerHTML = `<input
   name="querySearch"
