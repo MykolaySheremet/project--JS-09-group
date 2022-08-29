@@ -2,8 +2,6 @@ import defaultPoster from '../images/cinema320.jpg';
 import defaultPosterMob from '../images/cinema480.jpg';
 import defaultPosterTab from '../images/cinema768.jpg';
 import defaultPosterDesc from '../images/cinema1280.jpg';
-
-
 import { preloadering } from '../js/preloader'
 import { selectPage } from './pagination';
 import { renderButtonsOfPagination } from './pagination';
@@ -18,9 +16,58 @@ const btnQueue = document.querySelector('.library-second')
 const gallery = document.querySelector('.films_list')
 const preloader = document.getElementById('page_preloader')
 
-function renderQueueCards(start = 0, end = 18) {
-  start = 0 || start
-  end = 18 || end
+function renderQueueMoviesList (start, end, page) {
+  return function renderQueueCards() {
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
+
+    let localStorageQueue = localStorage.getItem('queueFilms');
+    let arraylocalStorageQueue = JSON.parse(localStorageQueue);
+  
+    checkActiveClassQueueBtn();
+  
+    if (localStorageQueue === null) {
+  
+      renderEmptyCardLibrary();
+      return;
+    }
+  
+    if (arraylocalStorageQueue.length === 0) {
+  
+      renderEmptyCardLibrary();
+      return;
+    } 
+  
+    else if (arraylocalStorageQueue.length > 0) {
+      
+      preloaderfunction()
+          
+      gallery.innerHTML = '';
+      const renderedArray = []
+      for (let i = start; i < end; i += 1) {
+        if(arraylocalStorageQueue[i] === undefined) {
+          continue
+        } else {
+          renderedArray.push(arraylocalStorageQueue[i])
+        }
+      }
+  
+      renderListFilms(renderedArray)
+      renderButtonsOfPagination(Math.ceil(arraylocalStorageQueue.length/18), page)
+    }
+  }
+}
+
+function renderQueueCards(start = 0, end = 18, page) {
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+  paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
+
   let localStorageQueue = localStorage.getItem('queueFilms');
   let arraylocalStorageQueue = JSON.parse(localStorageQueue);
 
@@ -43,22 +90,68 @@ function renderQueueCards(start = 0, end = 18) {
     preloaderfunction()
         
     gallery.innerHTML = '';
-
+    const renderedArray = []
     for (let i = start; i < end; i += 1) {
-      if(arraylocalStorageQueue[i] == false) {
-        return
+      if(arraylocalStorageQueue[i] === undefined) {
+        continue
+      } else {
+        renderedArray.push(arraylocalStorageQueue[i])
       }
-      renderListFilms(arraylocalStorageQueue[i])
     }
-    
-    paginationButtons.removeEventListener('click', selectPage)
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
+
+    renderListFilms(renderedArray)
+    renderButtonsOfPagination(Math.ceil(arraylocalStorageQueue.length/18), page)
   }
 }
 
-function renderWachedCards(start = 0, end = 18) {
+function renderWatchedMoviesList (start, end, page) {
+  return function renderWachedCards() {
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"watched"})
+
+    let localStorageWached = localStorage.getItem('watchedFilms');
+    let arrayLocalWachFilm = JSON.parse(localStorageWached);
+  
+    checkActiveClassWachedBtn();
+  
+    if (localStorageWached === null) {
+      renderEmptyCardLibrary();
+      return;
+    }
+  
+    if (arrayLocalWachFilm.length === 0) {
+      renderEmptyCardLibrary();
+      return;
+    }
+  
+    else if (arrayLocalWachFilm.length > 0) {
+  
+      preloaderfunction();
+      gallery.innerHTML = '';
+      const renderedArray = []
+      for (let i = start; i < end; i += 1) {
+        if(arrayLocalWachFilm[i] === undefined) {
+          break
+        } else {
+          renderedArray.push(arrayLocalWachFilm[i])
+        }
+      }
+  
+      renderListFilms(renderedArray)
+      renderButtonsOfPagination(Math.ceil(arrayLocalWachFilm.length/18), page)     
+    }
+  }  
+}
+
+function renderWachedCards(start = 0, end = 18, page) {
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+  paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"watched"})
 
   let localStorageWached = localStorage.getItem('watchedFilms');
   let arrayLocalWachFilm = JSON.parse(localStorageWached);
@@ -78,23 +171,20 @@ function renderWachedCards(start = 0, end = 18) {
   else if (arrayLocalWachFilm.length > 0) {
 
     preloaderfunction();
-    const renderedArray = []
     gallery.innerHTML = '';
-
+    const renderedArray = []
     for (let i = start; i < end; i += 1) {
-      if(arrayLocalWachFilm[i] === false) {
-        return
+      if(arrayLocalWachFilm[i] === undefined) {
+        break
+      } else {
+        renderedArray.push(arrayLocalWachFilm[i])
       }
-      renderedArray.push(arrayLocalWachFilm[i])
     }
+
     renderListFilms(renderedArray)
-    paginationButtons.removeEventListener('click', selectPage)
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"watched"})
-    
+    renderButtonsOfPagination(Math.ceil(arrayLocalWachFilm.length/18), page)    
   }
-}
+}  
 
 function preloaderfunction() {
 
@@ -204,4 +294,4 @@ function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export {renderWachedCards, renderQueueCards, checkActiveClassWachedBtn };
+export { renderWachedCards, renderWatchedMoviesList,renderQueueMoviesList, renderQueueCards, checkActiveClassWachedBtn };

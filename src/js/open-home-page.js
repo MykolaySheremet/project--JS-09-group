@@ -28,18 +28,18 @@ homeButtonRef.addEventListener('click', openHomePage);
 libraryButtonRef.addEventListener('click', openLibrary);
 input.addEventListener('click', toggleTheme);
 gallery.addEventListener('click', openMovieDetails);
-
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage() {
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
   paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-  paginationButtons.addEventListener('click', selectPage);
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+  paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"trend"});
   getTrendingMovies(1)
     .then(film => {
       renderTrendingMovies(film.data.results);
-      renderButtonsOfPagination(film.data, 1);
+      renderButtonsOfPagination(film.data.total_pages, 1);
       onHomeClick();
     })
     .catch(error => console.log(error));
