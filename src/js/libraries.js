@@ -1,11 +1,12 @@
-import defaultPoster from '../images/cinema320.jpg';
-import defaultPosterMob from '../images/cinema480.jpg';
-import defaultPosterTab from '../images/cinema768.jpg';
-import defaultPosterDesc from '../images/cinema1280.jpg';
+import defaultLibraryDesc from '../images/cinemaDesc-1x.jpg';
+import defaultLibraryTab from '../images/cinemaTab-1x.jpg';
+import defaultLibraryMob from '../images/cinemaMob-1x.jpg';
+// import defaultPosterDesc from '../images/cinema1280.jpg';
 import { preloadering } from '../js/preloader'
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
 const divConatiner = document.querySelector('.container-library');
+const conteinerInerDefaultEmptyLibrary = document.querySelector('.conteiner_emptylibrary');
 const paginationButtons = document.querySelector(".pagination-nav")
 const btnWached = document.querySelector('.library-first')
 const btnQueue = document.querySelector('.library-second')
@@ -14,11 +15,17 @@ const preloader = document.getElementById('page_preloader')
 const removeBtnfromQueue = document.querySelector('btn_queue_forlibrary')
 const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
 
+console.log(conteinerInerDefaultEmptyLibrary );
+// console.log(defaultLibraryMob);
+// console.log(defaultLibraryTab);
+
 
 // removeBtnfromQueue.addEventListener('click', renderQueueCards);
 
-function renderQueueMoviesList (start, end, page) {
+function renderQueueMoviesList(start, end, page) {
+  
   return function renderQueueCards() {
+    clearDefaultLibrary();
     removeEventListenersOnPaginationButtons()
     paginationButtons.addEventListener('click', selectPageQueue)
     let localStorageQueue = localStorage.getItem('queueFilms');
@@ -58,7 +65,7 @@ function renderQueueMoviesList (start, end, page) {
   }
 }
 
-function renderQueueCards(start = 0, end = 18, page) {            
+function renderQueueCards(start = 0, end = 18, page) {  
   removeEventListenersOnPaginationButtons()
   paginationButtons.addEventListener('click', selectPageQueue)
 
@@ -98,8 +105,13 @@ function renderQueueCards(start = 0, end = 18, page) {
   }
 }
 
+function clearDefaultLibrary() {
+  conteinerInerDefaultEmptyLibrary.innerHTML = '';
+}
+
 function renderWatchedMoviesList (start, end, page) {
   return function renderWachedCards() {
+    clearDefaultLibrary();
     removeEventListenersOnPaginationButtons()
     paginationButtons.addEventListener('click', selectPageWatched)
 
@@ -187,7 +199,7 @@ function preloaderfunction() {
                 if (!preloader.classList.contains('done')) {
                 preloader.classList.add('done')
                 }
-            }, 300);
+            }, 200);
   }
     
 }
@@ -242,6 +254,7 @@ function checkActiveClassQueueBtn() {
 }
 
 function checkActiveClassWachedBtn() {
+
   if (!btnWached.classList.contains('active_btn')) {
     btnWached.classList.add('active_btn')
     btnQueue.classList.remove('active_btn')
@@ -258,26 +271,22 @@ function renderEmptyCardLibrary() {
 
 function renderDefaultLibrary() {
   let rezult = '';
+  conteinerInerDefaultEmptyLibrary.innerHTML=''
 
-  if (window.matchMedia('(min-width: 1280px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultPosterDesc}" alt="cinema">
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    rezult = `<img class="images-cinema" src="${defaultLibraryDesc}" alt="cinema">
             <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
-    divConatiner.insertAdjacentHTML('beforeend', rezult);
-    return;
-  } else if (window.matchMedia('(min-width: 768px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultPosterTab}" alt="cinema">
-            <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
-    divConatiner.insertAdjacentHTML('beforeend', rezult);
+    conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
     return;
   } else if (window.matchMedia('(min-width: 480px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultPosterMob}" alt="cinema">
+    rezult = `<img class="images-cinema" src="${defaultLibraryTab}" alt="cinema">
             <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
-    divConatiner.insertAdjacentHTML('beforeend', rezult);
+    conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
     return;
   } else if (window.matchMedia('(max-width: 479px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultPoster}" alt="cinema">
+    rezult = `<img class="images-cinema" src="${defaultLibraryMob}" alt="cinema">
             <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
-    divConatiner.insertAdjacentHTML('beforeend', rezult);
+    conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
     return;
   }
 }
