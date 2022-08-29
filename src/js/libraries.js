@@ -2,15 +2,11 @@ import defaultPoster from '../images/cinema320.jpg';
 import defaultPosterMob from '../images/cinema480.jpg';
 import defaultPosterTab from '../images/cinema768.jpg';
 import defaultPosterDesc from '../images/cinema1280.jpg';
-
-
 import { preloadering } from '../js/preloader'
-
-import { getMovieDetails } from "./fetchFilms"
-
+import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
 const divConatiner = document.querySelector('.container-library');
-
+const paginationButtons = document.querySelector(".pagination-nav")
 const btnWached = document.querySelector('.library-first')
 const btnQueue = document.querySelector('.library-second')
 const gallery = document.querySelector('.films_list')
@@ -21,15 +17,50 @@ const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
 
 // removeBtnfromQueue.addEventListener('click', renderQueueCards);
 
+function renderQueueMoviesList (start, end, page) {
+  return function renderQueueCards() {
+    removeEventListenersOnPaginationButtons()
+    paginationButtons.addEventListener('click', selectPageQueue)
+    let localStorageQueue = localStorage.getItem('queueFilms');
+    let arraylocalStorageQueue = JSON.parse(localStorageQueue);
+  
+    checkActiveClassQueueBtn();
+  
+    if (localStorageQueue === null) {
+      renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
+      return;
+    }
+  
+    if (arraylocalStorageQueue.length === 0) {
+      renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
+      return;
+    } 
+  
+    else if (arraylocalStorageQueue.length > 0) {
+      
+      preloaderfunction()
+          
+      gallery.innerHTML = '';
+      const renderedArray = []
+      for (let i = start; i < end; i += 1) {
+        if(arraylocalStorageQueue[i] === undefined) {
+          continue
+        } else {
+          renderedArray.push(arraylocalStorageQueue[i])
+        }
+      }
+  
+      renderListFilms(renderedArray)
+      renderButtonsOfPagination(Math.ceil(arraylocalStorageQueue.length/18), page)
+    }
+  }
+}
 
-
-
-btnWached.addEventListener('click', renderWachedCards);
-btnQueue.addEventListener('click', renderQueueCards);
-
-
-function renderQueueCards() {
-
+function renderQueueCards(start = 0, end = 18, page) {            
+  removeEventListenersOnPaginationButtons()
+  paginationButtons.addEventListener('click', selectPageQueue)
 
   let localStorageQueue = localStorage.getItem('queueFilms');
   let arraylocalStorageQueue = JSON.parse(localStorageQueue);
@@ -37,14 +68,14 @@ function renderQueueCards() {
   checkActiveClassQueueBtn();
 
   if (localStorageQueue === null) {
-
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   }
 
   if (arraylocalStorageQueue.length === 0) {
-
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   } 
 
@@ -53,13 +84,64 @@ function renderQueueCards() {
     preloaderfunction()
         
     gallery.innerHTML = '';
+    const renderedArray = []
+    for (let i = start; i < end; i += 1) {
+      if(arraylocalStorageQueue[i] === undefined) {
+        continue
+      } else {
+        renderedArray.push(arraylocalStorageQueue[i])
+      }
+    }
 
-    renderListFilms(arraylocalStorageQueue);
-    
+    renderListFilms(renderedArray)
+    renderButtonsOfPagination(Math.ceil(arraylocalStorageQueue.length/18), page)
   }
 }
 
-function renderWachedCards() {
+function renderWatchedMoviesList (start, end, page) {
+  return function renderWachedCards() {
+    removeEventListenersOnPaginationButtons()
+    paginationButtons.addEventListener('click', selectPageWatched)
+
+    let localStorageWached = localStorage.getItem('watchedFilms');
+    let arrayLocalWachFilm = JSON.parse(localStorageWached);
+  
+    checkActiveClassWachedBtn();
+  
+    if (localStorageWached === null) {
+      renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
+      return;
+    }
+  
+    if (arrayLocalWachFilm.length === 0) {
+      renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
+      return;
+    }
+  
+    else if (arrayLocalWachFilm.length > 0) {
+  
+      preloaderfunction();
+      gallery.innerHTML = '';
+      const renderedArray = []
+      for (let i = start; i < end; i += 1) {
+        if(arrayLocalWachFilm[i] === undefined) {
+          break
+        } else {
+          renderedArray.push(arrayLocalWachFilm[i])
+        }
+      }
+  
+      renderListFilms(renderedArray)
+      renderButtonsOfPagination(Math.ceil(arrayLocalWachFilm.length/18), page)     
+    }
+  }  
+}
+
+function renderWachedCards(start = 0, end = 18, page) {
+  removeEventListenersOnPaginationButtons()
+  paginationButtons.addEventListener('click', selectPageWatched)
 
   let localStorageWached = localStorage.getItem('watchedFilms');
   let arrayLocalWachFilm = JSON.parse(localStorageWached);
@@ -68,24 +150,33 @@ function renderWachedCards() {
 
   if (localStorageWached === null) {
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   }
 
   if (arrayLocalWachFilm.length === 0) {
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   }
 
   else if (arrayLocalWachFilm.length > 0) {
 
     preloaderfunction();
-
     gallery.innerHTML = '';
+    const renderedArray = []
+    for (let i = start; i < end; i += 1) {
+      if(arrayLocalWachFilm[i] === undefined) {
+        break
+      } else {
+        renderedArray.push(arrayLocalWachFilm[i])
+      }
+    }
 
-    renderListFilms(arrayLocalWachFilm);
-    
+    renderListFilms(renderedArray)
+    renderButtonsOfPagination(Math.ceil(arrayLocalWachFilm.length/18), page)    
   }
-}
+}  
 
 function preloaderfunction() {
 
@@ -102,25 +193,7 @@ function preloaderfunction() {
 }
 
 function renderListFilms(arays) {
-
-  let amounCardOnPage = 18;
-
-  let currentPage = 1;
-
-  let count = 1;
-  
   for (const aray of arays) {
-
-    if (((count - 1) / amounCardOnPage) === Math.floor(((count - 1) / amounCardOnPage))) {
-        currentPage++;
-      if (((count - 1) / amounCardOnPage) === 0) {
-        currentPage = 1;
-      }
-      
-      clearContainIfLibraryEmpty();
-     }
-    count++;
-    
     const imageUrl = aray.poster_path
       ? `https://image.tmdb.org/t/p/w500/${aray.poster_path}`
       : `${aray.defaultPoster}`;
@@ -140,8 +213,7 @@ function renderListFilms(arays) {
                         </div>
                         </li>
                         `;
-    gallery.insertAdjacentHTML('beforeend', cardwachfil);
-  }
+    gallery.insertAdjacentHTML('beforeend', cardwachfil);}
 }
 
 function generateTypeMovies(types) {
@@ -214,4 +286,4 @@ function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export {renderWachedCards, checkActiveClassWachedBtn, renderQueueCards };
+export { renderWachedCards, renderWatchedMoviesList,renderQueueMoviesList, renderQueueCards, checkActiveClassWachedBtn };

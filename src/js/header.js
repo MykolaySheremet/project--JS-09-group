@@ -1,11 +1,19 @@
 const headerRef = document.querySelector('.header');
 const headerThumb = document.querySelector('.header-thumb');
+const headerContainer = document.querySelector('.header-container');
+const headerMenu = document.querySelector('.header-menu');
+
+console.log(headerMenu)
+// console.log(headerRef)
+// console.log(headerContainer)
+
 
 const libraryBtn = document.querySelector('#library');
 const homeBtn = document.querySelector('#home');
 
-const inputContainer = document.querySelector('.input-container');
+const inputContainer = document.querySelector('.header-search');
 const btnsContainer = document.querySelector('.header-search__container');
+
 
 // LIBRARY.addEventListener('click', onLibraryClick);
 // HOME.addEventListener('click', onHomeClick);
@@ -14,7 +22,7 @@ import backImage from '../images/library-desktop.jpg';
 import backImageTablet from '../images/library-tablet.jpg';
 import backImagePhone from '../images/library-phone.jpg';
 
-import mainBackImage from '../images/header-bg.jpg';
+// import mainBackImage from '../images/header-bg.jpg';
 
 function onLibraryClick() {
   inputContainer.innerHTML = '';
@@ -22,6 +30,10 @@ function onLibraryClick() {
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
   headerThumb.classList.remove('hidden');
+  headerContainer.classList.remove('header-container');
+  headerContainer.classList.add('header-container_library');
+  headerMenu.classList.remove('header-menu');
+  headerMenu.classList.add('header-menu_library');
 
   if (window.matchMedia('(min-width: 1280px)').matches) {
     headerRef.style.backgroundImage = `url(${backImageTablet}`;
@@ -42,9 +54,10 @@ function onLibraryClick() {
 function onHomeClick() {
   headerRef.style.backgroundImage = '';
   inputContainer.innerHTML = `<input
-	class="search-input"
-	type="text"
-	placeholder="Movie search"
+  name="querySearch"
+  class="search-input"
+  type="text"
+  placeholder="Movie search"
 />
 <svg class="search-icon" id="icon-search" viewBox="0 0 32 32">
 <path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z"></path>
@@ -54,7 +67,13 @@ function onHomeClick() {
   libraryBtn.classList.remove('current');
   btnsContainer.classList.add('unvisible');
   headerThumb.classList.add('hidden');
+  headerContainer.classList.remove('header-container_library');
+  headerContainer.classList.add('header-container');
+  headerMenu.classList.remove('header-menu_library');
+  headerMenu.classList.add('header-menu');
+  
   //headerRef.style.backgroundImage = `url(${mainBackImage}`;
 }
 
 export { onLibraryClick, onHomeClick };
+

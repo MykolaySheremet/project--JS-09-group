@@ -1,4 +1,5 @@
 @import './common';
+// @import './timer';
 @import './preloader';
 @import './header';
 @import './main';
@@ -8,3 +9,5 @@
 @import './backdrop';
 @import './pagination-buttons';
 @import './light-theme-switcher.scss';
+@import "./btn-to-top.scss";
+@import "./submit-search.scss";
