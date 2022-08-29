@@ -7,7 +7,6 @@ const homeBtn = document.querySelector('#home');
 const inputContainer = document.querySelector('.header-search');
 const btnsContainer = document.querySelector('.header-search__container');
 
-
 // LIBRARY.addEventListener('click', onLibraryClick);
 // HOME.addEventListener('click', onHomeClick);
 
@@ -17,12 +16,17 @@ import backImagePhone from '../images/library-phone.jpg';
 
 // import mainBackImage from '../images/header-bg.jpg';
 
+const errorText = document.querySelector('.error-paragraph');
+const successText = document.querySelector('.success-paragraph');
+
 function onLibraryClick() {
   inputContainer.innerHTML = '';
   libraryBtn.classList.add('current');
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
   headerThumb.classList.remove('hidden');
+  errorText.classList.add('hide-error');
+  successText.classList.remove('hide-success');
 
   if (window.matchMedia('(min-width: 1280px)').matches) {
     headerRef.style.backgroundImage = `url(${backImageTablet}`;
@@ -60,4 +64,3 @@ function onHomeClick() {
 }
 
 export { onLibraryClick, onHomeClick };
-

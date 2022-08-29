@@ -332,3 +332,55 @@
 	border: 1px solid var(--accent-color);
 	color: var(--secondary-white-text-color);
 }
+
+
+.error-container{
+margin: 0;
+width: 100%;
+align-items: center;
+text-align: center;
+margin-top: 20px;
+}
+
+.error-paragraph{
+color: var(--third-red-text-color);
+opacity: 1;
+overflow: hidden;
+display: flex;
+justify-content: center;
+font-size: 14px;
+line-height: 16px;
+transition-property:  opacity;
+transition-duration: 400ms;
+}
+
+.hide-error{
+opacity: 0;
+// display: none;
+}
+
+
+.success-container {
+	margin: 0;
+	width: 100%;
+	align-items: center;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.success-paragraph {
+	color: greenyellow;
+	opacity: 0;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.hide-success {
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 400ms;
+	// display: none;
+}
