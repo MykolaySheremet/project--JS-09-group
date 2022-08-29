@@ -1,10 +1,6 @@
 import { onLibraryClick } from './header';
 import { renderWachedCards, renderWatchedMoviesList, renderQueueMoviesList, checkActiveClassWachedBtn } from './libraries';
 import { preloadering } from './preloader';
-import { removeEventListenersOnPaginationButtons } from './pagination';
-
-
-const paginationButtons = document.querySelector('.pagination-nav');
 
 const watchedMoviesListButton = document.querySelector('.library-first');
 const queueMoviesListButton = document.querySelector('.library-second');

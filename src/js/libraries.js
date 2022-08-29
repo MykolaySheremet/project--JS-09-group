@@ -5,9 +5,6 @@ import defaultPosterDesc from '../images/cinema1280.jpg';
 import { preloadering } from '../js/preloader'
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
-import { getMovieDetails } from "./fetchFilms"
-
-
 const divConatiner = document.querySelector('.container-library');
 const paginationButtons = document.querySelector(".pagination-nav")
 const btnWached = document.querySelector('.library-first')
@@ -30,14 +27,14 @@ function renderQueueMoviesList (start, end, page) {
     checkActiveClassQueueBtn();
   
     if (localStorageQueue === null) {
-  
       renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
       return;
     }
   
     if (arraylocalStorageQueue.length === 0) {
-  
       renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
       return;
     } 
   
@@ -71,14 +68,14 @@ function renderQueueCards(start = 0, end = 18, page) {
   checkActiveClassQueueBtn();
 
   if (localStorageQueue === null) {
-
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   }
 
   if (arraylocalStorageQueue.length === 0) {
-
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   } 
 
@@ -113,11 +110,13 @@ function renderWatchedMoviesList (start, end, page) {
   
     if (localStorageWached === null) {
       renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
       return;
     }
   
     if (arrayLocalWachFilm.length === 0) {
       renderEmptyCardLibrary();
+      renderButtonsOfPagination(1)
       return;
     }
   
@@ -151,11 +150,13 @@ function renderWachedCards(start = 0, end = 18, page) {
 
   if (localStorageWached === null) {
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   }
 
   if (arrayLocalWachFilm.length === 0) {
     renderEmptyCardLibrary();
+    renderButtonsOfPagination(1)
     return;
   }
 

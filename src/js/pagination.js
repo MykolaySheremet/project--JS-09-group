@@ -2,7 +2,6 @@ import { getTrendingMovies, getMovieByKeyword } from './fetchFilms'
 import { renderTrendingMovies } from './renderTrendingMovies'
 import { renderQueueCards, renderWachedCards } from './libraries'
 
-
 const paginationButtons = document.querySelector(".pagination-nav")
 let currentPage = 1
 
@@ -127,7 +126,6 @@ function selectPageTrend({target}) {
         return;
       }
     if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
-        // removeEventListenersOnPaginationButtons ()
             getTrendingMovies(currentPage - 1).then(({data}) => {
                 renderTrendingMovies(data.results)
                 currentPage-=1
@@ -136,7 +134,6 @@ function selectPageTrend({target}) {
         return
     }
     if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
-        // removeEventListenersOnPaginationButtons ()
         getTrendingMovies(currentPage + 1).then(({data}) => {
             renderTrendingMovies(data.results)
             currentPage+=1
@@ -145,7 +142,6 @@ function selectPageTrend({target}) {
         return
     }
     currentPage = Number(target.textContent)
-    // removeEventListenersOnPaginationButtons ()
     getTrendingMovies(currentPage)
         .then(({data}) => {
             renderTrendingMovies(data.results)
@@ -159,19 +155,16 @@ function selectPageWatched({target}) {
         return;
       }
     if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
-        // removeEventListenersOnPaginationButtons ()
         renderWachedCards((currentPage-2)*18, (currentPage-1)*18)
         currentPage-=1
         return
     }
     if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
-        // removeEventListenersOnPaginationButtons ()
         renderWachedCards(currentPage*18, (currentPage+1)*18)
         currentPage+=1
         return
     }
     currentPage = Number(target.textContent)
-    // removeEventListenersOnPaginationButtons ()
     renderWachedCards((currentPage-1)*18, currentPage*18, currentPage)
 }
 
@@ -180,19 +173,16 @@ function selectPageQueue({target}) {
         return;
       }
     if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
-        // removeEventListenersOnPaginationButtons ()
         renderQueueCards((currentPage-2)*18, (currentPage-1)*18)
         currentPage-=1
         return
     }
     if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
-        // removeEventListenersOnPaginationButtons ()
         renderQueueCards(currentPage*18, (currentPage+1)*18)
         currentPage+=1
         return
     }
     currentPage = Number(target.textContent)
-    // removeEventListenersOnPaginationButtons ()
     renderQueueCards((currentPage-1)*18, currentPage*18, currentPage)
 }
 
@@ -201,7 +191,6 @@ function selectPageKeyWord({target}) {
         return;
       }
     if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
-        // removeEventListenersOnPaginationButtons ()
             getMovieByKeyword(keyword, currentPage - 1).then(({data}) => {
                 renderTrendingMovies(data.results)
                 currentPage-=1
@@ -210,7 +199,6 @@ function selectPageKeyWord({target}) {
         return
     }
     if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
-        // removeEventListenersOnPaginationButtons ()
         getMovieByKeyword(keyword, currentPage+=1).then(({data}) => {
             renderTrendingMovies(data.results)
             currentPage+=1
@@ -219,7 +207,6 @@ function selectPageKeyWord({target}) {
         return
     }
     currentPage = Number(target.textContent)
-    // removeEventListenersOnPaginationButtons ()
     getMovieByKeyword(keyword, currentPage).then(({data}) => {
         renderTrendingMovies(data.results)
         renderButtonsOfPagination(data.total_pages)      
