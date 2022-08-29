@@ -274,18 +274,21 @@ function renderDefaultLibrary() {
   conteinerInerDefaultEmptyLibrary.innerHTML=''
 
   if (window.matchMedia('(min-width: 768px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultLibraryDesc}" alt="cinema">
-            <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
+    rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
+              <img class="images-cinema" src="${defaultLibraryDesc}" alt="cinema">
+              `;
     conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
     return;
   } else if (window.matchMedia('(min-width: 480px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultLibraryTab}" alt="cinema">
-            <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
+    rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
+              <img class="images-cinema" src="${defaultLibraryTab}" alt="cinema">
+              `;
     conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
     return;
   } else if (window.matchMedia('(max-width: 479px)').matches) {
-    rezult = `<img class="images-cinema" src="${defaultLibraryMob}" alt="cinema">
-            <p class="p-library"> Sorry, but you haven't added anything to your library yet </p>`;
+    rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
+              <img class="images-cinema" src="${defaultLibraryMob}" alt="cinema">
+              `;
     conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
     return;
   }
