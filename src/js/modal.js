@@ -1,10 +1,8 @@
-// const openBtn = document.querySelector('.footer__authorship')
 const closeBtn = document.querySelector('.modal__btn')
 const backdrop = document.querySelector('.backdrop')
 const modalWindow = document.querySelector('.modal')
+const scrollPart = document.getElementById('scroll')
 let scrollDelay = null
-
-// openBtn.addEventListener('click', openModalWindow);
 
 function openModalWindow() {
     backdrop.classList.remove('is-hidden');
@@ -40,8 +38,8 @@ closeFilmModalWindow()
 });
 
 function pageScroll() {
-  modalWindow.scrollBy(0,1);
-  scrollDelay = setTimeout(pageScroll,10);
+  scrollPart.scrollBy(0,1);
+  scrollDelay = setTimeout(pageScroll, 10);
 }
 
 export { openModalWindow }
