@@ -15,6 +15,11 @@ const btnWached = document.querySelector('.library-first')
 const btnQueue = document.querySelector('.library-second')
 const gallery = document.querySelector('.films_list')
 const preloader = document.getElementById('page_preloader')
+const removeBtnfromQueue = document.querySelector('btn_queue_forlibrary')
+const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
+
+
+// removeBtnfromQueue.addEventListener('click', renderQueueCards);
 
 function renderQueueMoviesList (start, end, page) {
   return function renderQueueCards() {
@@ -67,6 +72,7 @@ function renderQueueCards(start = 0, end = 18, page) {
   paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
   paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
   paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
+
 
   let localStorageQueue = localStorage.getItem('queueFilms');
   let arraylocalStorageQueue = JSON.parse(localStorageQueue);
