@@ -22,7 +22,6 @@
 }
 
 .pagination-nav_button {
-    margin-left: 4px;
     font-style: inherit;
     font-weight: 500;
     font-size: 12px;
@@ -39,6 +38,10 @@
     &:disabled {
         display: none;
     }
+
+    @media (min-width: 768px) {
+        margin-left: 4px;
+	}
 }
 
 .pagination-nav_arrow {
