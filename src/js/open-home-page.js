@@ -1,6 +1,6 @@
 import { getTrendingMovies } from './fetchFilms';
 import { renderTrendingMovies } from './renderTrendingMovies';
-import { renderButtonsOfPagination, removeEventListenersOnPaginationButtons } from './pagination';
+import { renderButtonsOfPagination, clearDefaultLibrary,removeEventListenersOnPaginationButtons } from './pagination';
 import { selectPageTrend } from './pagination';
 import { onHomeClick } from './header';
 import { openModalWindow } from './modal';
@@ -31,6 +31,7 @@ gallery.addEventListener('click', openMovieDetails);
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage() {
+  // clearDefaultLibrary();
   getTrendingMovies(1)
     .then(film => {
       onHomeClick();
