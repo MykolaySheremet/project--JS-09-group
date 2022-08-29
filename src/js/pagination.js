@@ -7,6 +7,7 @@ let currentPage = 1
 
 function renderButtonsOfPagination(total_pages, page) {
     currentPage = page || currentPage
+    window.scrollTo(0, 0)
     let markup = ""
     switch (total_pages) {
         case 1:
