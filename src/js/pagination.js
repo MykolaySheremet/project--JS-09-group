@@ -1,6 +1,7 @@
 import { getTrendingMovies, getMovieByKeyword } from './fetchFilms'
 import { renderTrendingMovies } from './renderTrendingMovies'
 import { renderQueueCards, renderWachedCards } from './libraries'
+import { keyword } from './search-by-keyword'
 
 const paginationButtons = document.querySelector(".pagination-nav")
 let currentPage = 1
