@@ -27,6 +27,40 @@
 	display: none;
 }
 
+.logo__images{
+
+	animation: 1700ms linear 0s normal none infinite running rot;
+			-webkit-animation: 1700ms linear 0s normal none infinite running rot;
+	
+		}
+		
+
+@keyframes rot {
+			0% {
+				transform: rotateY(0deg);
+				
+			}
+	
+			100% {
+				transform: rotateY(360deg);
+			}
+		}
+	
+@-webkit-keyframes rot {
+			0% {
+				transform: rotateY(0deg);
+			}
+	
+			100% {
+				transform: rotateY(360deg);
+			}
+}
+
+
+
+
+
+
 .header-container {
 	padding-top: 40px;
 	padding-bottom: 92px;
