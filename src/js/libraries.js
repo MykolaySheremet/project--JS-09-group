@@ -3,8 +3,7 @@ import defaultPosterMob from '../images/cinema480.jpg';
 import defaultPosterTab from '../images/cinema768.jpg';
 import defaultPosterDesc from '../images/cinema1280.jpg';
 import { preloadering } from '../js/preloader'
-import { selectPage } from './pagination';
-import { renderButtonsOfPagination } from './pagination';
+import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
 import { getMovieDetails } from "./fetchFilms"
 
@@ -23,12 +22,8 @@ const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
 
 function renderQueueMoviesList (start, end, page) {
   return function renderQueueCards() {
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
-
+    removeEventListenersOnPaginationButtons()
+    paginationButtons.addEventListener('click', selectPageQueue)
     let localStorageQueue = localStorage.getItem('queueFilms');
     let arraylocalStorageQueue = JSON.parse(localStorageQueue);
   
@@ -66,13 +61,9 @@ function renderQueueMoviesList (start, end, page) {
   }
 }
 
-function renderQueueCards(start = 0, end = 18, page) {
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-  paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
-
+function renderQueueCards(start = 0, end = 18, page) {            
+  removeEventListenersOnPaginationButtons()
+  paginationButtons.addEventListener('click', selectPageQueue)
 
   let localStorageQueue = localStorage.getItem('queueFilms');
   let arraylocalStorageQueue = JSON.parse(localStorageQueue);
@@ -112,11 +103,8 @@ function renderQueueCards(start = 0, end = 18, page) {
 
 function renderWatchedMoviesList (start, end, page) {
   return function renderWachedCards() {
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"watched"})
+    removeEventListenersOnPaginationButtons()
+    paginationButtons.addEventListener('click', selectPageWatched)
 
     let localStorageWached = localStorage.getItem('watchedFilms');
     let arrayLocalWachFilm = JSON.parse(localStorageWached);
@@ -153,11 +141,8 @@ function renderWatchedMoviesList (start, end, page) {
 }
 
 function renderWachedCards(start = 0, end = 18, page) {
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-  paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"watched"})
+  removeEventListenersOnPaginationButtons()
+  paginationButtons.addEventListener('click', selectPageWatched)
 
   let localStorageWached = localStorage.getItem('watchedFilms');
   let arrayLocalWachFilm = JSON.parse(localStorageWached);

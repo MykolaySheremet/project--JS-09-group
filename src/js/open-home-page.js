@@ -1,7 +1,7 @@
 import { getTrendingMovies } from './fetchFilms';
 import { renderTrendingMovies } from './renderTrendingMovies';
-import { renderButtonsOfPagination } from './pagination';
-import { selectPage } from './pagination';
+import { renderButtonsOfPagination, removeEventListenersOnPaginationButtons } from './pagination';
+import { selectPageTrend } from './pagination';
 import { onHomeClick } from './header';
 import { openModalWindow } from './modal';
 import { openLibrary } from './open-library';
@@ -31,18 +31,16 @@ gallery.addEventListener('click', openMovieDetails);
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage() {
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
-  paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"trend"});
   getTrendingMovies(1)
     .then(film => {
+      removeEventListenersOnPaginationButtons()
+      paginationButtons.addEventListener('click', selectPageTrend);
       renderTrendingMovies(film.data.results);
       renderButtonsOfPagination(film.data.total_pages, 1);
       onHomeClick();
     })
     .catch(error => console.log(error));
+  
 }
 
 export { openHomePage };

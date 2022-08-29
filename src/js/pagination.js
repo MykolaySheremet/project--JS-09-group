@@ -12,10 +12,7 @@ function renderButtonsOfPagination(total_pages, page) {
     switch (total_pages) {
         case 1:
             paginationButtons.innerHTML = markup
-            paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"trend"})
-            paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
-            paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
-            paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+            removeEventListenersOnPaginationButtons()
             break
         case 2:
             markup = `<button type="button" id="first-page" class="pagination-nav_button pagination-nav_button--number current-page">1</button>
@@ -125,87 +122,115 @@ function renderButtonsOfPagination(total_pages, page) {
     }
 }
 
-function selectPage({target}) {
+function selectPageTrend({target}) {
     if (target.nodeName !== "BUTTON" && target.nodeName !== "svg" &&  target.nodeName !== "path") {
         return;
       }
     if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
-        switch (this.mod) {
-            case "watched":
-                renderWachedCards((currentPage-2)*18, (currentPage-1)*18)
+        // removeEventListenersOnPaginationButtons ()
+            getTrendingMovies(currentPage - 1).then(({data}) => {
+                renderTrendingMovies(data.results)
                 currentPage-=1
-                break
-            case "queue":
-                renderQueueCards((currentPage-2)*18, (currentPage-1)*18)
-                currentPage-=1
-                break
-            case "keyword":
-                getMovieByKeyword(keyword, currentPage - 1).then(({data}) => {
-                    renderTrendingMovies(data.results)
-                    currentPage-=1
-                    renderButtonsOfPagination(data.total_pages)
-                })
-                break
-            case "trend":
-                getTrendingMovies(currentPage - 1).then(({data}) => {
-                    renderTrendingMovies(data.results)
-                    currentPage-=1
-                    renderButtonsOfPagination(data.total_pages)
-                })
-                break
-        }
+                renderButtonsOfPagination(data.total_pages)
+            })
         return
     }
     if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
-        switch (this.mod) {
-            case "watched":
-                renderWachedCards(currentPage*18, (currentPage+1)*18)
-                currentPage+=1
-                break
-            case "queue":
-                renderQueueCards(currentPage*18, (currentPage+1)*18)
-                currentPage+=1
-                break
-            case "keyword":
-                getMovieByKeyword(keyword, currentPage+=1).then(({data}) => {
-                    renderTrendingMovies(data.results)
-                    currentPage+=1
-                    renderButtonsOfPagination(data.total_pages)      
-                })
-                break
-            case "trend":
-                getTrendingMovies(currentPage + 1).then(({data}) => {
-                    renderTrendingMovies(data.results)
-                    currentPage+=1
-                    renderButtonsOfPagination(data.total_pages)
-                })
-                break
-        }
+        // removeEventListenersOnPaginationButtons ()
+        getTrendingMovies(currentPage + 1).then(({data}) => {
+            renderTrendingMovies(data.results)
+            currentPage+=1
+            renderButtonsOfPagination(data.total_pages)
+        })
         return
     }
-    
     currentPage = Number(target.textContent)
-    switch (this.mod) {
-        case "watched":
-            renderWachedCards((currentPage-1)*18, currentPage*18, currentPage)
-                break
-        case "queue":
-            renderQueueCards((currentPage-1)*18, currentPage*18, currentPage)
-                break
-        case "keyword":
-            getMovieByKeyword(keyword, currentPage).then(({data}) => {
-                renderTrendingMovies(data.results)
-                renderButtonsOfPagination(data.total_pages)      
-            })
-            break
-        case "trend":
-            getTrendingMovies(currentPage)
-            .then(({data}) => {
-                renderTrendingMovies(data.results)
-                renderButtonsOfPagination(data.total_pages)      
-            })
-            break
+    // removeEventListenersOnPaginationButtons ()
+    getTrendingMovies(currentPage)
+        .then(({data}) => {
+            renderTrendingMovies(data.results)
+            renderButtonsOfPagination(data.total_pages)      
+        })
+
+}
+
+function selectPageWatched({target}) {
+    if (target.nodeName !== "BUTTON" && target.nodeName !== "svg" &&  target.nodeName !== "path") {
+        return;
+      }
+    if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
+        // removeEventListenersOnPaginationButtons ()
+        renderWachedCards((currentPage-2)*18, (currentPage-1)*18)
+        currentPage-=1
+        return
     }
+    if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
+        // removeEventListenersOnPaginationButtons ()
+        renderWachedCards(currentPage*18, (currentPage+1)*18)
+        currentPage+=1
+        return
+    }
+    currentPage = Number(target.textContent)
+    // removeEventListenersOnPaginationButtons ()
+    renderWachedCards((currentPage-1)*18, currentPage*18, currentPage)
+}
+
+function selectPageQueue({target}) {
+    if (target.nodeName !== "BUTTON" && target.nodeName !== "svg" &&  target.nodeName !== "path") {
+        return;
+      }
+    if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
+        // removeEventListenersOnPaginationButtons ()
+        renderQueueCards((currentPage-2)*18, (currentPage-1)*18)
+        currentPage-=1
+        return
+    }
+    if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
+        // removeEventListenersOnPaginationButtons ()
+        renderQueueCards(currentPage*18, (currentPage+1)*18)
+        currentPage+=1
+        return
+    }
+    currentPage = Number(target.textContent)
+    // removeEventListenersOnPaginationButtons ()
+    renderQueueCards((currentPage-1)*18, currentPage*18, currentPage)
+}
+
+function selectPageKeyWord({target}) {
+    if (target.nodeName !== "BUTTON" && target.nodeName !== "svg" &&  target.nodeName !== "path") {
+        return;
+      }
+    if (target.id === "prev-page" || target.id === "arrow-left" || target.id === "path-prev") {
+        // removeEventListenersOnPaginationButtons ()
+            getMovieByKeyword(keyword, currentPage - 1).then(({data}) => {
+                renderTrendingMovies(data.results)
+                currentPage-=1
+                renderButtonsOfPagination(data.total_pages)
+            })
+        return
+    }
+    if (target.id === "next-page" || target.id === "arrow-right" || target.id === "path-next") {
+        // removeEventListenersOnPaginationButtons ()
+        getMovieByKeyword(keyword, currentPage+=1).then(({data}) => {
+            renderTrendingMovies(data.results)
+            currentPage+=1
+            renderButtonsOfPagination(data.total_pages)      
+        })
+        return
+    }
+    currentPage = Number(target.textContent)
+    // removeEventListenersOnPaginationButtons ()
+    getMovieByKeyword(keyword, currentPage).then(({data}) => {
+        renderTrendingMovies(data.results)
+        renderButtonsOfPagination(data.total_pages)      
+    })
+}
+
+function removeEventListenersOnPaginationButtons () {
+    paginationButtons.removeEventListener('click', selectPageTrend)
+    paginationButtons.removeEventListener('click', selectPageWatched)
+    paginationButtons.removeEventListener('click', selectPageKeyWord)
+    paginationButtons.removeEventListener('click', selectPageQueue)
 }
 
 function addCurrentPageClass() {
@@ -230,4 +255,4 @@ function disableArrow(total_pages) {
     }
 }
 
-export { selectPage, renderButtonsOfPagination }
+export { removeEventListenersOnPaginationButtons, selectPageTrend, selectPageWatched, selectPageQueue, selectPageKeyWord, renderButtonsOfPagination }
