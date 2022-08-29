@@ -1,36 +1,59 @@
 import { getMovieByKeyword } from './fetchFilms';
-import { openHomePage } from './open-home-page';
 import { renderTrendingMovies } from './renderTrendingMovies';
 import { renderButtonsOfPagination } from './pagination';
-import { onHomeClick } from './header';
+import { onResponseCheck } from './oncheckresponse';
 
-const searchValue = document.querySelector('#search-query');
-const galleryContainer = document.querySelector('.films_list');
-// const films = film.data.results;
+const refs = {
+  searchValue: document.querySelector('.submit-search'),
+  galleryContainer: document.querySelector('.films_list'),
+  btnMyLibrary: document.querySelector('#library'),
+  btnHome: document.querySelector('#home'),
+};
 
-searchValue.addEventListener('submit', onCustomSearch);
+refs.searchValue.addEventListener('submit', onCustomSearch);
+refs.btnMyLibrary.addEventListener('click', onInputHide);
+refs.btnHome.addEventListener('click', onInputShow);
+
+function generalSettings() {
+  refs.searchValue.reset();
+  refs.galleryContainer.innerHTML = '';
+}
 
 let formValue = null;
-let currentPage = 1;
 
 function onCustomSearch(event) {
   event.preventDefault();
-  formValue = event.target.querySearch.value.toLowerCase().trim();
-  console.log(formValue);
+  formValue = event.target.query.value.toLowerCase().trim();
   if (!formValue) {
-    galleryContainer.innerHTML = '';
+    generalSettings();
     console.log('no result');
     return;
   } else {
-    galleryContainer.innerHTML = '';
-    console.log('bad request');
-    getMovieByKeyword(formValue, currentPage).then(film => {
-      renderTrendingMovies(film.data.results);
-      renderButtonsOfPagination(film.data, 1);
-      onHomeClick();
-    });
-    return;
+    generalSettings();
+    getMovieByKeyword(formValue)
+      .then(onResponseCheck)
+      .then(film => {
+        renderButtonsOfPagination(film.data, 2);
+      })
+      .catch(error => error);
   }
+  return;
 }
 
-export { onCustomSearch };
+function onInputHide(event) {
+  event.preventDefault();
+  refs.searchValue.classList.add('hidden');
+}
+
+function onInputShow(event) {
+  event.preventDefault;
+  refs.searchValue.classList.remove('hidden');
+}
+
+export { onCustomSearch, renderTrendingMovies };
+
+// .then(film => {
+//       renderTrendingMovies(film.data.results);
+//       renderButtonsOfPagination(film.data, currentPage);
+//     })
+//     .catch(error => console.log(error));
