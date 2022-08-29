@@ -25,10 +25,10 @@
 
 .film_card__img{
     margin-bottom: 5px;
-    width: 100%;
+    width: 280px;
+    height: 402px;
     overflow: hidden;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
 }
 
 .film_card__img--block{
@@ -77,6 +77,8 @@ color: var(--accent-color);
 
     .film_card__img{
         margin-bottom: 8px;
+        width: 336px;
+        height: 455px;
     }
 
     .film_card__title{
@@ -107,6 +109,8 @@ color: var(--accent-color);
 
     .film_card__img{
         margin-bottom: 12px;
+        width: 394px;
+        height: 574px;
     }
 
     .film_card__title{
