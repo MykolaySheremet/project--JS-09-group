@@ -15,8 +15,8 @@ import { onCustomSearch } from './search-by-keyword';
 // const divPreloader = document.querySelector('.preloader');
 // window.addEventListener('load', openAndHiddenLoader);
 
-const LIBRARY = document.querySelector('#library');
-const HOME = document.querySelector('#home');
+const libraryButtonRef = document.querySelector('#library');
+const homeButtonRef = document.querySelector('#home');
 // const searchInput = document.querySelector('header-search');
 const input = document.querySelector('#slider');
 const paginationButtons = document.querySelector('.pagination-nav');
@@ -24,15 +24,18 @@ const gallery = document.querySelector('.films_list');
 const openBtn = document.querySelector('.footer__authorship');
 
 // searchInput.addEventListener('submit', getInputValue)
-HOME.addEventListener('click', openHomePage);
-LIBRARY.addEventListener('click', openLibrary);
+homeButtonRef.addEventListener('click', openHomePage);
+libraryButtonRef.addEventListener('click', openLibrary);
 input.addEventListener('click', toggleTheme);
 gallery.addEventListener('click', openMovieDetails);
-paginationButtons.addEventListener('click', selectPage);
+
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage() {
-  // openAndHiddenLoader()
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+  paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
+  paginationButtons.addEventListener('click', selectPage);
   getTrendingMovies(1)
     .then(film => {
       renderTrendingMovies(film.data.results);

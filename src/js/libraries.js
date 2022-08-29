@@ -5,26 +5,22 @@ import defaultPosterDesc from '../images/cinema1280.jpg';
 
 
 import { preloadering } from '../js/preloader'
+import { selectPage } from './pagination';
+import { renderButtonsOfPagination } from './pagination';
 
 import { getMovieDetails } from "./fetchFilms"
 
 
 const divConatiner = document.querySelector('.container-library');
-
+const paginationButtons = document.querySelector(".pagination-nav")
 const btnWached = document.querySelector('.library-first')
 const btnQueue = document.querySelector('.library-second')
 const gallery = document.querySelector('.films_list')
 const preloader = document.getElementById('page_preloader')
 
-
-
-
-btnWached.addEventListener('click', renderWachedCards);
-btnQueue.addEventListener('click', renderQueueCards);
-
-
-function renderQueueCards() {
-
+function renderQueueCards(start = 0, end = 18) {
+  start = 0 || start
+  end = 18 || end
   let localStorageQueue = localStorage.getItem('queueFilms');
   let arraylocalStorageQueue = JSON.parse(localStorageQueue);
 
@@ -48,12 +44,21 @@ function renderQueueCards() {
         
     gallery.innerHTML = '';
 
-    renderListFilms(arraylocalStorageQueue);
+    for (let i = start; i < end; i += 1) {
+      if(arraylocalStorageQueue[i] == false) {
+        return
+      }
+      renderListFilms(arraylocalStorageQueue[i])
+    }
     
+    paginationButtons.removeEventListener('click', selectPage)
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"watched"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"queue"})
   }
 }
 
-function renderWachedCards() {
+function renderWachedCards(start = 0, end = 18) {
 
   let localStorageWached = localStorage.getItem('watchedFilms');
   let arrayLocalWachFilm = JSON.parse(localStorageWached);
@@ -73,10 +78,20 @@ function renderWachedCards() {
   else if (arrayLocalWachFilm.length > 0) {
 
     preloaderfunction();
-
+    const renderedArray = []
     gallery.innerHTML = '';
 
-    renderListFilms(arrayLocalWachFilm);
+    for (let i = start; i < end; i += 1) {
+      if(arrayLocalWachFilm[i] === false) {
+        return
+      }
+      renderedArray.push(arrayLocalWachFilm[i])
+    }
+    renderListFilms(renderedArray)
+    paginationButtons.removeEventListener('click', selectPage)
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"queue"})
+    paginationButtons.removeEventListener('click', {handleEvent: selectPage, mod:"keyword"})
+    paginationButtons.addEventListener('click', {handleEvent: selectPage, mod:"watched"})
     
   }
 }
@@ -96,28 +111,27 @@ function preloaderfunction() {
 }
 
 function renderListFilms(arays) {
-  
   for (const aray of arays) {
-    
     const imageUrl = aray.poster_path
       ? `https://image.tmdb.org/t/p/w500/${aray.poster_path}`
       : `${aray.defaultPoster}`;
     const year = new Date(aray.release_date).getFullYear();
     const typeList = generateTypeMovies(aray.genres);
     const cardwachfil = `
-                        <li class = "film_card" data-id="${aray.i}">
+                        <li class = "film_card" data-id="${aray.id}">
                         <div class="film_card__img">
                         <img class="film_card__img--block"
                         src=${imageUrl}
                         alt="${aray.original_title}">
-                        </div class="film_card__box>
-                        <h3 class="film_card__title">${aray.original_title}</h3>
-                        <p class="film_card__type">${typeList} | ${year}</p>
-                        <p class="film_card__rating">Rating: ${aray.vote_average}</p>
+                        </div>
+                        <div class="film_card__box">
+                          <h3 class="film_card__title">${aray.original_title}</h3>
+                          <p class="film_card__type">${typeList} | ${year}</p>
+                          <p class="film_card__rating">Rating: ${aray.vote_average}</p>
+                        </div>
                         </li>
                         `;
-    gallery.insertAdjacentHTML('beforeend', cardwachfil);
-  }
+    gallery.insertAdjacentHTML('beforeend', cardwachfil);}
 }
 
 function generateTypeMovies(types) {
@@ -190,4 +204,4 @@ function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
 
-export {renderWachedCards, checkActiveClassWachedBtn };
+export {renderWachedCards, renderQueueCards, checkActiveClassWachedBtn };
