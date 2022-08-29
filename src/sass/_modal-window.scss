@@ -158,13 +158,13 @@
     border-color: var(--accent-color);
     background-color: var(--accent-color);
     color: var(--secondary-white-text-color);
-}
+    transition: box-shadow 250ms linear, background-color 250ms linear;
 
-// .modal-window__button-watched {
-//     border-color: var(--accent-color);
-//     background-color: var(--accent-color);
-//     color: var(--secondary-white-text-color);
-// }
+    &:hover {
+        background-color: #e85303;
+        box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.53)
+    } 
+}
 
 .modal-window__button-watched-checked,
 .modal-window__button-queue-checked{
@@ -172,6 +172,13 @@
     color: var(--primary-text-color);
     border-color: var(--primary-text-color);
     background-color: var(--secondary-white-text-color);
+    transition: box-shadow 250ms linear, color 250ms linear, border-color color 250ms linear;
+
+    &:hover {
+        border-color: var(--accent-color);
+        color: var(--secondary-white-text-color);
+        box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.53);
+    }
 }
 
 .film_card {
