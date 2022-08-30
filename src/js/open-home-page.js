@@ -9,6 +9,7 @@ import { toggleTheme } from './light-theme-switcher';
 import { openMovieDetails } from './open-movie-details';
 import { getInputValue, submitForm } from './search-by-keyword';
 import { debounce } from 'lodash';
+import { preloadering } from './preloader';
 
 const libraryButtonRef = document.querySelector('#library');
 const homeButtonRef = document.querySelector('#home');
@@ -31,6 +32,7 @@ function openHomePage() {
   
   getTrendingMovies(1)
     .then(film => {
+      preloadering();
       onHomeClick();
       removeEventListenersOnPaginationButtons();
       paginationButtons.addEventListener('click', selectPageTrend);

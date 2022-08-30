@@ -40,27 +40,21 @@
 
         opacity: 1;
         animation-name: emptycinema;
-        animation-duration: 500ms;
+        animation-duration: 100ms;
         animation-iteration-count: infinite;
 
 }
 
 @keyframes emptycinema {
     0% {
-        text-shadow: 0 0 10px rgba(255, 107, 8, 1),
-                    0 0 20px rgba(255, 107, 8, 1),
-                    0 0 40px rgba(255, 107, 8, 1),
-                    0 0 80px rgba(255, 107, 8, 1),
-                    0 0 160px rgba(255, 107, 8, 1),
+        color: var(--secondary-white-text-color);
+                   
 
     }
 
     100% {
-        text-shadow: 0 0 10px rgba(255, 107, 8, 1),
-                    0 0 20px rgba(255, 107, 8, 1),
-                    0 0 40px rgba(255, 107, 8, 1),
-                    0 0 80px rgba(255, 107, 8, 1),
-                    0 0 16px rgba(255, 107, 8, 1),
+        color: var(--accent-color);
+                    
 
     }
 
