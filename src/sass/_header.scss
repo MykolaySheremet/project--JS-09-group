@@ -351,7 +351,8 @@
 .library-button {
 	z-index: 35;
 	font-size: 12px;
-	padding: 13px 36px;
+	min-width: 129px;
+	padding: 13px 15px;
 	line-height: 1.34;
 	background-color: transparent;
 	border: 1px solid var(--secondary-white-text-color);
@@ -369,12 +370,14 @@
 	}
 
 	@media (min-width: 768px) {
-		padding: 13px 46px;
+		min-width: 152px;
+		padding: 13px 15px;
 		line-height: 1.33;
 	}
 
 	@media (min-width: 1280px) {
-		padding: 13px 41px;
+		min-width: 147px;
+		padding: 13px 13px;
 	}
 }
 
@@ -383,11 +386,6 @@
 
 }
 
-.library-second {
-	@media (min-width: 768px) {
-		padding: 13px 57px;
-	}
-}
 
 .active_btn{
 	background-color: var(--accent-color);
@@ -421,20 +419,22 @@ left:0;
 }
 
 .error-paragraph{
+	display: block;
+	// color: rgba(255, 1, 1, 0.9);
 color: var(--third-red-text-color);
 opacity: 1;
 overflow: hidden;
 display: flex;
 justify-content: center;
 font-size: 14px;
-line-height: 16px;
+line-height: 1.14;
 transition-property:  opacity;
 transition-duration: 400ms;
 }
 
 .hide-error{
 opacity: 0;
-// display: none;
+display: none;
 }
 
 

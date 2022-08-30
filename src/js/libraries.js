@@ -266,8 +266,10 @@ function renderEmptyCardLibrary() {
 
 function renderDefaultLibrary() {
   let rezult = '';
-  conteinerInerDefaultEmptyLibrary.innerHTML=''
 
+  // conteinerInerDefaultEmptyLibrary.classList.remove('conteiner_emptylibrary');
+  conteinerInerDefaultEmptyLibrary.innerHTML = '';
+  
   if (window.matchMedia('(min-width: 768px)').matches) {
     rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
               <img class="images-cinema" src="${defaultLibraryDesc}" alt="cinema">
