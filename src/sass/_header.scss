@@ -343,13 +343,13 @@ margin-top: 20px;
 }
 
 .error-paragraph{
-color: var(--third-red-text-color);
+color: rgba(255, 1, 1, 0.793);
 opacity: 1;
 overflow: hidden;
 display: flex;
 justify-content: center;
 font-size: 14px;
-line-height: 16px;
+line-height: 1.14;
 transition-property:  opacity;
 transition-duration: 400ms;
 }
@@ -369,13 +369,13 @@ opacity: 0;
 }
 
 .success-paragraph {
-	color: greenyellow;
+	color: rgba(172, 255, 47, 0.745);
 	opacity: 0;
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
 	font-size: 14px;
-	line-height: 16px;
+	line-height: 1.14;
 }
 
 .hide-success {
