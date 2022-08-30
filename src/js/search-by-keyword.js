@@ -9,8 +9,8 @@ import {
 const paginationButtons = document.querySelector('.pagination-nav');
 const errorText = document.querySelector('.error-paragraph');
 const successText = document.querySelector('.success-paragraph');
-// const paginationContainer = document.querySelector('.container_pagination');
-// const galleryContainer = document.querySelector('.films_list');
+const paginationContainer = document.querySelector('.container_pagination');
+const galleryContainer = document.querySelector('.films_list');
 
 let keyword = '';
 
@@ -20,8 +20,8 @@ function getInputValue({ target }) {
     .then(({ data }) => {
       if (data.results.length === 0) {
         onShowError();
-        // galleryContainer.innerHTML = '';
-        // paginationContainer.innerHTML = '';
+        galleryContainer.innerHTML = '';
+        paginationContainer.innerHTML = '';
         successText.classList.remove('hide-success');
         return;
       }
