@@ -1,7 +1,8 @@
 import defaultLibraryDesc from '../images/cinemaDesc-1x.jpg';
 import defaultLibraryTab from '../images/cinemaTab-1x.jpg';
 import defaultLibraryMob from '../images/cinemaMob-1x.jpg';
-// import defaultPosterDesc from '../images/cinema1280.jpg';
+import { errorText } from '../js/search-by-keyword';
+
 import { preloadering } from '../js/preloader'
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
@@ -15,12 +16,6 @@ const preloader = document.getElementById('page_preloader')
 const removeBtnfromQueue = document.querySelector('btn_queue_forlibrary')
 const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
 
-
-console.log(preloader);
-// console.log(defaultLibraryTab);
-
-
-// removeBtnfromQueue.addEventListener('click', renderQueueCards);
 
 function renderQueueMoviesList(start, end, page) {
   
@@ -152,8 +147,8 @@ function renderWatchedMoviesList (start, end, page) {
 }
 
 function renderWachedCards(start = 0, end = 18, page) {
-  removeEventListenersOnPaginationButtons()
-  paginationButtons.addEventListener('click', selectPageWatched)
+  removeEventListenersOnPaginationButtons();
+  paginationButtons.addEventListener('click', selectPageWatched);
 
   let localStorageWached = localStorage.getItem('watchedFilms');
   let arrayLocalWachFilm = JSON.parse(localStorageWached);
