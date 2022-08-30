@@ -7,14 +7,14 @@ import { preloadering } from '../js/preloader'
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
 const divConatiner = document.querySelector('.container-library');
-const conteinerInerDefaultEmptyLibrary = document.querySelector('.conteiner_emptylibrary');
-const paginationButtons = document.querySelector(".pagination-nav")
-const btnWached = document.querySelector('.library-first')
-const btnQueue = document.querySelector('.library-second')
-const gallery = document.querySelector('.films_list')
-const preloader = document.getElementById('page_preloader')
-const removeBtnfromQueue = document.querySelector('btn_queue_forlibrary')
-const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
+
+const defaultConteiner = document.querySelector('.conteiner_emptylibrary');
+
+const paginationButtons = document.querySelector(".pagination-nav");
+const btnWached = document.querySelector('.library-first');
+const btnQueue = document.querySelector('.library-second');
+const gallery = document.querySelector('.films_list');
+const preloader = document.getElementById('page_preloader');
 
 
 function renderQueueMoviesList(start, end, page) {
@@ -101,7 +101,7 @@ function renderQueueCards(start = 0, end = 18, page) {
 }
 
 function clearDefaultLibrary() {
-  conteinerInerDefaultEmptyLibrary.innerHTML = '';
+  defaultConteiner.classList.add('conteiner_emptylibrary-hidden');
 }
 
 function renderWatchedMoviesList (start, end, page) {
@@ -265,30 +265,7 @@ function renderEmptyCardLibrary() {
 }
 
 function renderDefaultLibrary() {
-  let rezult = '';
-
-  // conteinerInerDefaultEmptyLibrary.classList.remove('conteiner_emptylibrary');
-  conteinerInerDefaultEmptyLibrary.innerHTML = '';
-  
-  if (window.matchMedia('(min-width: 768px)').matches) {
-    rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
-              <img class="images-cinema" src="${defaultLibraryDesc}" alt="cinema">
-              `;
-    conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
-    return;
-  } else if (window.matchMedia('(min-width: 480px)').matches) {
-    rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
-              <img class="images-cinema" src="${defaultLibraryTab}" alt="cinema">
-              `;
-    conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
-    return;
-  } else if (window.matchMedia('(max-width: 479px)').matches) {
-    rezult = `<p class="p-library"> Sorry, but you haven't added anything to your library yet </p>
-              <img class="images-cinema" src="${defaultLibraryMob}" alt="cinema">
-              `;
-    conteinerInerDefaultEmptyLibrary .insertAdjacentHTML('beforeend', rezult);
-    return;
-  }
+  defaultConteiner.classList.remove('conteiner_emptylibrary-hidden');
 }
 
 function clearContainIfLibraryEmpty() {
