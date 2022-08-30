@@ -40,6 +40,7 @@ closeFilmModalWindow()
 function pageScroll() {
   scrollPart.scrollBy(0,1);
   scrollDelay = setTimeout(pageScroll, 10);
+  
 }
 
 export { openModalWindow }
