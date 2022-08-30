@@ -21,7 +21,7 @@ try {
         
             const imageUrl = poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-            : `${defaultPoster}`;
+            : `https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available-737x1024.jpg`;
   
           const date = release_date ? release_date : first_air_date;
           const year = new Date(date).getFullYear();
