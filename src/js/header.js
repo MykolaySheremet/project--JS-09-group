@@ -3,65 +3,64 @@ const headerRef = document.querySelector('.header');
 const headerThumb = document.querySelector('.header-thumb');
 const headerContainer = document.querySelector('.header-container');
 const headerMenu = document.querySelector('.header-menu');
+const headerMenues = document.querySelector('.container-navigation');
 
-console.log(headerMenu)
+// console.log(headerMenu)
 // console.log(headerRef)
 // console.log(headerContainer)
 
 
 const libraryBtn = document.querySelector('#library');
 const homeBtn = document.querySelector('#home');
-
 const inputContainer = document.querySelector('.header-search');
 const btnsContainer = document.querySelector('.header-search__container');
-
-// LIBRARY.addEventListener('click', onLibraryClick);
-// HOME.addEventListener('click', onHomeClick);
-
-import backImage from '../images/library-desktop.jpg';
-import backImageTablet from '../images/library-tablet.jpg';
-import backImagePhone from '../images/library-phone.jpg';
-
-// import mainBackImage from '../images/header-bg.jpg';
 
 const errorText = document.querySelector('.error-paragraph');
 const successText = document.querySelector('.success-paragraph');
 
 function onLibraryClick() {
   inputContainer.innerHTML = '';
+
+  // закомитил
+  //  if (window.matchMedia('(max-width: 479px)').matches) {
+  //   headerRef.style.backgroundImage = `url(${backImagePhone}`;
+  //   return;
+  // }
+
+  // if (window.matchMedia('(min-width: 768px)').matches) {
+  //   headerRef.style.backgroundImage = `url(${backImageTablet}`;
+  //   return;
+  // }
+
+  // if (window.matchMedia('(min-width: 1280px)').matches) {
+  //   headerRef.style.backgroundImage = `url(${backImage}`;
+  //   return;
+  // }
+
+  // headerThumb.classList.remove('hidden');
+  headerMenues.classList.remove('header-menu')
+  headerRef.classList.add('headerforlibrary');
+  headerMenues.classList.add('header-menu_library');
   libraryBtn.classList.add('current');
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
-  headerThumb.classList.remove('hidden');
 
-  errorText.classList.add('hide-error');
-  successText.classList.remove('hide-success');
+  // errorText.classList.add('hide-error');
+  // successText.classList.remove('hide-success');
 
-  headerContainer.classList.remove('header-container');
-  headerContainer.classList.add('header-container_library');
+  // headerContainer.classList.remove('header-container');
+  // headerContainer.classList.add('header-container_library');
   headerMenu.classList.remove('header-menu');
-  headerMenu.classList.add('header-menu_library');
+  
 
-
-  if (window.matchMedia('(min-width: 1280px)').matches) {
-    headerRef.style.backgroundImage = `url(${backImageTablet}`;
-    return;
-  }
-
-  if (window.matchMedia('(min-width: 768px)').matches) {
-    headerRef.style.backgroundImage = `url(${backImagePhone}`;
-    return;
-  }
-
-  if (window.matchMedia('(min-width: 0px)').matches) {
-    headerRef.style.backgroundImage = `url(${backImage}`;
-    return;
-  }
 }
 
 function onHomeClick() {
   clearDefaultLibrary();
-  headerRef.style.backgroundImage = '';
+
+  headerRef.classList.remove('headerforlibrary');
+  // headerRef.style.backgroundImage = '';
+
   inputContainer.innerHTML = `<input
   name="querySearch"
   class="search-input"
@@ -75,9 +74,9 @@ function onHomeClick() {
   homeBtn.classList.add('current');
   libraryBtn.classList.remove('current');
   btnsContainer.classList.add('unvisible');
-  headerThumb.classList.add('hidden');
-  headerContainer.classList.remove('header-container_library');
-  headerContainer.classList.add('header-container');
+  // headerThumb.classList.add('hidden');
+  // headerContainer.classList.remove('header-container_library');
+  // headerContainer.classList.add('header-container');
   headerMenu.classList.remove('header-menu_library');
   headerMenu.classList.add('header-menu');
   

@@ -9,7 +9,7 @@ import {
 const paginationButtons = document.querySelector('.pagination-nav');
 const galleryContainer = document.querySelector('.films_list');
 const errorText = document.querySelector('.error-paragraph');
-const successText = document.querySelector('.success-paragraph');
+// const successText = document.querySelector('.success-paragraph');
 const paginationContainer = document.querySelector('.container_pagination');
 
 let keyword = '';
@@ -22,10 +22,10 @@ function getInputValue({ target }) {
         onShowError();
         galleryContainer.innerHTML = '';
         paginationContainer.innerHTML = '';
-        successText.classList.remove('hide-success');
+        // successText.classList.remove('hide-success');
         return;
       }
-      onShowSuccess();
+      // onShowSuccess();
       errorText.classList.add('hide-error');
       removeEventListenersOnPaginationButtons();
       paginationButtons.addEventListener('click', selectPageKeyWord);
@@ -40,9 +40,11 @@ function onShowError() {
   console.log('Search result not successful. Enter the correct movie name');
 }
 
-function onShowSuccess() {
-  successText.classList.add('hide-success');
-  console.log('Search result not successful. Enter the correct movie name');
-}
+// function onShowSuccess() {
+//   successText.classList.add('hide-success');
+//   console.log('Search result not successful. Enter the correct movie name');
+// }
 
-export { keyword, getInputValue, onShowError, onShowSuccess };
+// export { keyword, getInputValue, onShowError, onShowSuccess };
+
+export { keyword, getInputValue, onShowError};

@@ -15,8 +15,8 @@ const preloader = document.getElementById('page_preloader')
 const removeBtnfromQueue = document.querySelector('btn_queue_forlibrary')
 const addBtnfromWached = document.querySelector('btn_wached_forlibrary')
 
-console.log(conteinerInerDefaultEmptyLibrary );
-// console.log(defaultLibraryMob);
+
+console.log(preloader);
 // console.log(defaultLibraryTab);
 
 

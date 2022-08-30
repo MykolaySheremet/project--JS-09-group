@@ -1,14 +1,14 @@
+
+<!-- переписиваю -->
 <header class="header">
   <!-- <div class="header-thumb hidden"></div> -->
-  <div class="container header-thumb">
+  <div class="container ">
+    <!-- <div class="header-thumb"> -->
+    <!-- </div>   -->
     <div class="header-container">
-      <div class="header-menu">
+      <div class="header-menu heder-menu-Library hidden container-navigation">
         <a href="./index.html" class="header-menu__logo">
-          <img
-            class="menu-logo__logo logo__images"
-            src="./images/logo.svg"
-            alt="logo"
-          />
+          <img class="menu-logo__logo logo__images" width="24" height="24" src="./images/logo.svg" alt="logo" />
           <h1 class="menu-logo__text logo-text__animation">Filmoteka</h1>
         </a>
         <ul class="header-menu__nav">
@@ -25,15 +25,12 @@
 
       <div class="header-main">
         <form class="header-search">
-          <input
-            name="querySearch"
-            class="search-input"
-            type="text"
-            placeholder="Movie search"
-          />
+          <input name="querySearch" class="search-input" type="text" placeholder="Movie search" />
           <svg class="search-icon">
             <use href="./images/symbol-defs.svg#icon-search"></use>
           </svg>
+          
+          
         </form>
 
         <div class="container error-container">
@@ -41,11 +38,14 @@
             Search result not successful. Enter the correct movie name
           </p>
         </div>
-        <div class="container success-container">
+        <!-- <div class="container success-container">
           <p class="success-paragraph">Search result is successful</p>
-        </div>
+        </div> -->
+
         
-      
+       
+
+
         <ul class="header-search__container unvisible">
           <li>
             <button class="library-button library-first active_btn">WATCHED</button>
@@ -53,12 +53,15 @@
           <li>
             <button class="library-button library-second">QUEUE</button>
           </li>
-            
+
         </ul>
-        
-          
-        
+
+
+
       </div>
     </div>
+
+
+
   </div>
 </header>
