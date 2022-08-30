@@ -2,7 +2,8 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://MykolaySheremet.github.io/project--JS-09-group",  "scripts": {
+  "homepage": "https://MykolaySheremet.github.io/project--JS-09-group",
+  "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /project--JS-09-group/"
   },
@@ -19,6 +20,7 @@
   "dependencies": {
     "@glidejs/glide": "^3.5.2",
     "axios": "^0.27.2",
+    "lodash": "^4.17.21",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {

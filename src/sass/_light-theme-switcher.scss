@@ -20,6 +20,19 @@ body {
     background: var(--color-secondary);
 }
 
+ button{
+ background: transparent;
+ color: #ff6b08;
+}
+
+ span{
+    color: #ff6b08;
+}
+
+.pagination-nav svg{
+    fill:  #ff6b08;
+}
+
 // .toggle__container {
 //     padding-top: 10px;
 // }
