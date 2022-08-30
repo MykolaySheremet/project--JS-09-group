@@ -10,7 +10,7 @@ function preloadering() {
       preloader.classList.add('done')
     }
     
-  }, 500);
+  }, 400);
 }
 }
 

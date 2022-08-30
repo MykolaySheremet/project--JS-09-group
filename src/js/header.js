@@ -1,5 +1,13 @@
+import {clearDefaultLibrary} from './libraries'
 const headerRef = document.querySelector('.header');
 const headerThumb = document.querySelector('.header-thumb');
+const headerContainer = document.querySelector('.header-container');
+const headerMenu = document.querySelector('.header-menu');
+
+console.log(headerMenu)
+// console.log(headerRef)
+// console.log(headerContainer)
+
 
 const libraryBtn = document.querySelector('#library');
 const homeBtn = document.querySelector('#home');
@@ -25,8 +33,15 @@ function onLibraryClick() {
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
   headerThumb.classList.remove('hidden');
+
   errorText.classList.add('hide-error');
   successText.classList.remove('hide-success');
+
+  headerContainer.classList.remove('header-container');
+  headerContainer.classList.add('header-container_library');
+  headerMenu.classList.remove('header-menu');
+  headerMenu.classList.add('header-menu_library');
+
 
   if (window.matchMedia('(min-width: 1280px)').matches) {
     headerRef.style.backgroundImage = `url(${backImageTablet}`;
@@ -45,6 +60,7 @@ function onLibraryClick() {
 }
 
 function onHomeClick() {
+  clearDefaultLibrary();
   headerRef.style.backgroundImage = '';
   inputContainer.innerHTML = `<input
   name="querySearch"
@@ -60,6 +76,11 @@ function onHomeClick() {
   libraryBtn.classList.remove('current');
   btnsContainer.classList.add('unvisible');
   headerThumb.classList.add('hidden');
+  headerContainer.classList.remove('header-container_library');
+  headerContainer.classList.add('header-container');
+  headerMenu.classList.remove('header-menu_library');
+  headerMenu.classList.add('header-menu');
+  
   //headerRef.style.backgroundImage = `url(${mainBackImage}`;
 }
 
