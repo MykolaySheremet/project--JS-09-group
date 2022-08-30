@@ -1,21 +1,14 @@
 import { getTrendingMovies } from './fetchFilms';
 import { renderTrendingMovies } from './renderTrendingMovies';
-
 import { renderButtonsOfPagination, clearDefaultLibrary,removeEventListenersOnPaginationButtons } from './pagination';
-
 import { selectPageTrend } from './pagination';
 import { onHomeClick } from './header';
 import { openModalWindow } from './modal';
 import { openLibrary } from './open-library';
 import { toggleTheme } from './light-theme-switcher';
 import { openMovieDetails } from './open-movie-details';
-import { getInputValue } from './search-by-keyword';
+import { getInputValue, submitForm } from './search-by-keyword';
 import { debounce } from 'lodash';
-// /Прелоадер - поки так не працює закомінитв
-// import { openAndHiddenLoader } from './preloader';
-
-// const divPreloader = document.querySelector('.preloader');
-// window.addEventListener('load', openAndHiddenLoader);
 
 const libraryButtonRef = document.querySelector('#library');
 const homeButtonRef = document.querySelector('#home');
@@ -27,6 +20,7 @@ const openBtn = document.querySelector('.footer__authorship');
 const loodashDebounce = 200;
 
 inputRef.addEventListener('input', debounce(getInputValue, loodashDebounce));
+inputRef.addEventListener('submit', submitForm)
 homeButtonRef.addEventListener('click', openHomePage);
 libraryButtonRef.addEventListener('click', openLibrary);
 input.addEventListener('click', toggleTheme);
