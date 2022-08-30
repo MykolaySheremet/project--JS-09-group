@@ -47,4 +47,4 @@ function onShowError() {
 
 // export { keyword, getInputValue, onShowError, onShowSuccess };
 
-export { keyword, getInputValue, onShowError};
+export { errorText, keyword, getInputValue, onShowError};

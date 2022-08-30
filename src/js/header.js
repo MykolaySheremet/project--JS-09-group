@@ -5,39 +5,16 @@ const headerContainer = document.querySelector('.header-container');
 const headerMenu = document.querySelector('.header-menu');
 const headerMenues = document.querySelector('.container-navigation');
 
-// console.log(headerMenu)
-// console.log(headerRef)
-// console.log(headerContainer)
-
-
 const libraryBtn = document.querySelector('#library');
 const homeBtn = document.querySelector('#home');
 const inputContainer = document.querySelector('.header-search');
 const btnsContainer = document.querySelector('.header-search__container');
 
 const errorText = document.querySelector('.error-paragraph');
-const successText = document.querySelector('.success-paragraph');
 
 function onLibraryClick() {
   inputContainer.innerHTML = '';
-
-  // закомитил
-  //  if (window.matchMedia('(max-width: 479px)').matches) {
-  //   headerRef.style.backgroundImage = `url(${backImagePhone}`;
-  //   return;
-  // }
-
-  // if (window.matchMedia('(min-width: 768px)').matches) {
-  //   headerRef.style.backgroundImage = `url(${backImageTablet}`;
-  //   return;
-  // }
-
-  // if (window.matchMedia('(min-width: 1280px)').matches) {
-  //   headerRef.style.backgroundImage = `url(${backImage}`;
-  //   return;
-  // }
-
-  // headerThumb.classList.remove('hidden');
+  errorText.classList.add('hide-error');
   headerMenues.classList.remove('header-menu')
   headerRef.classList.add('headerforlibrary');
   headerMenues.classList.add('header-menu_library');
@@ -45,11 +22,6 @@ function onLibraryClick() {
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
 
-  // errorText.classList.add('hide-error');
-  // successText.classList.remove('hide-success');
-
-  // headerContainer.classList.remove('header-container');
-  // headerContainer.classList.add('header-container_library');
   headerMenu.classList.remove('header-menu');
   
 
@@ -58,8 +30,9 @@ function onLibraryClick() {
 function onHomeClick() {
   clearDefaultLibrary();
 
+  errorText.classList.add('hide-error');
+
   headerRef.classList.remove('headerforlibrary');
-  // headerRef.style.backgroundImage = '';
 
   inputContainer.innerHTML = `<input
   name="querySearch"
@@ -74,13 +47,9 @@ function onHomeClick() {
   homeBtn.classList.add('current');
   libraryBtn.classList.remove('current');
   btnsContainer.classList.add('unvisible');
-  // headerThumb.classList.add('hidden');
-  // headerContainer.classList.remove('header-container_library');
-  // headerContainer.classList.add('header-container');
   headerMenu.classList.remove('header-menu_library');
   headerMenu.classList.add('header-menu');
   
-  //headerRef.style.backgroundImage = `url(${mainBackImage}`;
 }
 
 export { onLibraryClick, onHomeClick };

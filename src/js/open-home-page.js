@@ -34,7 +34,7 @@ gallery.addEventListener('click', openMovieDetails);
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage() {
-  // clearDefaultLibrary();
+  
   getTrendingMovies(1)
     .then(film => {
       onHomeClick();
