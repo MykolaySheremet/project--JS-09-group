@@ -296,6 +296,10 @@
 
 	&:focus {
 		border-bottom: 0.5px solid var(--secondary-white-text-color);
+
+		&::placeholder {
+			color: var(--secondary-white-text-color)
+		}
 	}
 
 	@media screen and (max-width: 767px) {
@@ -311,11 +315,6 @@
 
 .search-input::placeholder {
 	color: gray;
-
-	&:focus {
-		background: white;
-		color: #fff;
-	}
 }
 
 .search-icon {

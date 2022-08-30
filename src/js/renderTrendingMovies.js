@@ -30,16 +30,16 @@ try {
           const genresList = findGenresNames(genre_ids, genres.data.genres)
         return `
         <li class = "film_card" data-id="${id}">
-        <div class="film_card__img">
-           <img class="film_card__img--block"
-           src=${imageUrl}
-           alt="${name}">
-        </div>
-        <div class="film_card__box">
-          <h3 class="film_card__title">${name}</h3>
-          <p class="film_card__type">${genresList} | ${year}</p>
-          <p class="film_card__rating">Rating: ${vote}</p>
-        </div>
+          <div class="film_card__img">
+            <img class="film_card__img--block"
+            src=${imageUrl}
+            alt="${name}">
+          </div>
+          <div class="film_card__box">
+            <h3 class="film_card__title">${name}</h3>
+            <p class="film_card__type">${genresList} | ${year}</p>
+            <p class="film_card__rating">Rating: ${vote}</p>
+          </div>
         </li>
         `
       }
