@@ -1,4 +1,8 @@
-import {clearDefaultLibrary} from './libraries'
+import { clearDefaultLibrary } from './libraries'
+
+import logoHeader from '../images/logo.svg';
+
+
 const headerRef = document.querySelector('.header');
 const headerThumb = document.querySelector('.header-thumb');
 const headerContainer = document.querySelector('.header-container');
@@ -10,9 +14,10 @@ const homeBtn = document.querySelector('#home');
 const inputContainer = document.querySelector('.header-search');
 const btnsContainer = document.querySelector('.header-search__container');
 const requestParagraphRef = document.querySelector('.request-paragraph');
-
+const linkToLogoHeader = document.querySelector('.container_render_link');
 
 function onLibraryClick() {
+  renderLogoHeaderLibraPage() ;
   inputContainer.innerHTML = '';
   requestParagraphRef.textContent = ''
   headerMenues.classList.remove('header-menu')
@@ -26,6 +31,7 @@ function onLibraryClick() {
 
 function onHomeClick() {
   clearDefaultLibrary();
+  renderLogoHeaderHomePage();
   requestParagraphRef.textContent = ''
   headerRef.classList.remove('headerforlibrary');
   inputContainer.innerHTML = `<input
@@ -44,5 +50,26 @@ function onHomeClick() {
   headerMenu.classList.remove('header-menu_library');
   headerMenu.classList.add('header-menu');
 }
+
+function renderLogoHeaderLibraPage() {
+  linkToLogoHeader.innerHTML = 
+          `
+          <a href="./index.html" class="header-menu__logo">
+          <img class="menu-logo__logo logo__images" width="24" height="24" src="${logoHeader}" alt="logo" />
+          <h1 class="menu-logo__text logo-text__animation">Filmoteka</h1>
+          </a>
+          `;
+  
+}
+
+function renderLogoHeaderHomePage() {
+  linkToLogoHeader.innerHTML = 
+          `
+          <img class="menu-logo__logo logo__images" width="24" height="24" src="${logoHeader}" alt="logo" />
+          <h1 class="menu-logo__text logo-text__animation">Filmoteka</h1>
+          `;
+  
+};
+
 
 export { onLibraryClick, onHomeClick };

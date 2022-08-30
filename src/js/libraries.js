@@ -1,7 +1,9 @@
 import defaultLibraryDesc from '../images/cinemaDesc-1x.jpg';
 import defaultLibraryTab from '../images/cinemaTab-1x.jpg';
 import defaultLibraryMob from '../images/cinemaMob-1x.jpg';
+
 import { errorText } from '../js/search-by-keyword';
+
 
 import { preloadering } from '../js/preloader'
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
@@ -271,5 +273,7 @@ function renderDefaultLibrary() {
 function clearContainIfLibraryEmpty() {
   divConatiner.innerHTML = '';
 }
+
+
 
 export { renderWachedCards, clearDefaultLibrary,renderWatchedMoviesList,renderQueueMoviesList, renderQueueCards, checkActiveClassWachedBtn };
