@@ -1,6 +1,6 @@
 import { getTrendingMovies } from './fetchFilms';
 import { renderTrendingMovies } from './renderTrendingMovies';
-import { renderButtonsOfPagination, clearDefaultLibrary,removeEventListenersOnPaginationButtons } from './pagination';
+import { renderButtonsOfPagination, removeEventListenersOnPaginationButtons } from './pagination';
 import { selectPageTrend } from './pagination';
 import { onHomeClick } from './header';
 import { openModalWindow } from './modal';
@@ -18,7 +18,7 @@ const input = document.querySelector('#slider');
 const paginationButtons = document.querySelector('.pagination-nav');
 const gallery = document.querySelector('.films_list');
 const openBtn = document.querySelector('.footer__authorship');
-const loodashDebounce = 200;
+const loodashDebounce = 350;
 
 inputRef.addEventListener('input', debounce(getInputValue, loodashDebounce));
 inputRef.addEventListener('submit', submitForm)
