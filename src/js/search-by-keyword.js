@@ -9,8 +9,7 @@ import {
 
 const paginationButtons = document.querySelector('.pagination-nav');
 const galleryContainer = document.querySelector('.films_list');
-const errorText = document.querySelector('.error-paragraph');
-// const successText = document.querySelector('.success-paragraph');
+const requestParagraphRef = document.querySelector('.request-paragraph');
 const paginationContainer = document.querySelector('.container_pagination');
 
 let keyword = '';
@@ -21,18 +20,17 @@ function getInputValue({ target }) {
     getMovieByKeyword(keyword)
     .then(({ data }) => {
       if (data.results.length === 0) {
-        onShowError();
+        showErrorRequest ()
         galleryContainer.innerHTML = '';
-        paginationContainer.innerHTML = '';
-        // successText.classList.remove('hide-success');
+        renderButtonsOfPagination(1);
         return;
       }
-      // onShowSuccess();
-      errorText.classList.add('hide-error');
       removeEventListenersOnPaginationButtons();
       paginationButtons.addEventListener('click', selectPageKeyWord);
       renderTrendingMovies(data.results);
       renderButtonsOfPagination(data.total_pages, 1);
+      target.value = ''
+      showSuccessfulRequest(data.total_results, keyword)
     })
     .catch(error => console.log(error));
   }
@@ -43,25 +41,25 @@ function getInputValue({ target }) {
       paginationButtons.addEventListener('click', selectPageTrend);
       renderTrendingMovies(film.data.results);
       renderButtonsOfPagination(film.data.total_pages, 1);
+      requestParagraphRef.textContent = ''
     })
     .catch(error => console.log(error));
   }
 }
 
-function onShowError() {
-  errorText.classList.remove('hide-error');
-  console.log('Search result not successful. Enter the correct movie name');
+function showSuccessfulRequest (number, value) {
+  requestParagraphRef.textContent = number === 1 ? `We found ${number} movie on request ${value}` 
+                                                 : `We found ${number} movies on request ${value}`
+  requestParagraphRef.style.color = "green"
+}
+
+function showErrorRequest () {
+  requestParagraphRef.textContent = 'The search result is not successful. Enter the correct movie name.'
+  requestParagraphRef.style.color = 'var(--third-red-text-color)'
 }
 
 function submitForm (e) {
   e.preventDefault()
 }
 
-// function onShowSuccess() {
-//   successText.classList.add('hide-success');
-//   console.log('Search result not successful. Enter the correct movie name');
-// }
-
-// export { keyword, getInputValue, onShowError, onShowSuccess };
-
-export { errorText, keyword, getInputValue, onShowError, submitForm };
+export { keyword, getInputValue, submitForm };

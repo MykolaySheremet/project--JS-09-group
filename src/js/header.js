@@ -9,31 +9,25 @@ const libraryBtn = document.querySelector('#library');
 const homeBtn = document.querySelector('#home');
 const inputContainer = document.querySelector('.header-search');
 const btnsContainer = document.querySelector('.header-search__container');
+const requestParagraphRef = document.querySelector('.request-paragraph');
 
-const errorText = document.querySelector('.error-paragraph');
 
 function onLibraryClick() {
   inputContainer.innerHTML = '';
-  errorText.classList.add('hide-error');
+  requestParagraphRef.textContent = ''
   headerMenues.classList.remove('header-menu')
   headerRef.classList.add('headerforlibrary');
   headerMenues.classList.add('header-menu_library');
   libraryBtn.classList.add('current');
   homeBtn.classList.remove('current');
   btnsContainer.classList.remove('unvisible');
-
   headerMenu.classList.remove('header-menu');
-  
-
 }
 
 function onHomeClick() {
   clearDefaultLibrary();
-
-  errorText.classList.add('hide-error');
-
+  requestParagraphRef.textContent = ''
   headerRef.classList.remove('headerforlibrary');
-
   inputContainer.innerHTML = `<input
   name="querySearch"
   class="search-input"
@@ -49,7 +43,6 @@ function onHomeClick() {
   btnsContainer.classList.add('unvisible');
   headerMenu.classList.remove('header-menu_library');
   headerMenu.classList.add('header-menu');
-  
 }
 
 export { onLibraryClick, onHomeClick };
