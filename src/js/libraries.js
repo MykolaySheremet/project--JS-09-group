@@ -1,6 +1,7 @@
 import defaultLibraryDesc from '../images/cinemaDesc-1x.jpg';
 import defaultLibraryTab from '../images/cinemaTab-1x.jpg';
 import defaultLibraryMob from '../images/cinemaMob-1x.jpg';
+import defaultPoster from '../img/GREYHOUND_320.jpg';
 
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
@@ -129,7 +130,7 @@ function renderWatchedMoviesList (start, end, page) {
       gallery.innerHTML = '';
       const renderedArray = []
       for (let i = start; i < end; i += 1) {
-        if(arrayLocalWachFilm[i] === undefined) {
+        if(arrayLocalWachFilm[i] === undefined || null) {
           break
         } else {
           renderedArray.push(arrayLocalWachFilm[i])
@@ -197,9 +198,11 @@ function preloaderfunction() {
 
 function renderListFilms(arays, atr) {
   for (const aray of arays) {
+
+    console.log(aray)
     const imageUrl = aray.poster_path
       ? `https://image.tmdb.org/t/p/w500/${aray.poster_path}`
-      : `${aray.defaultPoster}`;
+      : `https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available-737x1024.jpg`;
     const year = new Date(aray.release_date).getFullYear();
     const typeList = generateTypeMovies(aray.genres);
     const cardwachfil = `
