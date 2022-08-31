@@ -12,7 +12,7 @@ function openLibrary() {
   preloadering();
   checkActiveClassWachedBtn();
   onLibraryClick();
-  renderWachedCards(0, 18, 1);
+  renderWachedCards();
 }
 
 export { openLibrary };
