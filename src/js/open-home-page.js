@@ -1,6 +1,9 @@
 import { getTrendingMovies } from './fetchFilms';
 import { renderTrendingMovies } from './renderTrendingMovies';
-import { renderButtonsOfPagination, removeEventListenersOnPaginationButtons } from './pagination';
+import {
+  renderButtonsOfPagination,
+  removeEventListenersOnPaginationButtons,
+} from './pagination';
 import { selectPageTrend } from './pagination';
 import { onHomeClick } from './header';
 import { openModalWindow } from './modal';
@@ -18,10 +21,10 @@ const input = document.querySelector('#slider');
 const paginationButtons = document.querySelector('.pagination-nav');
 const gallery = document.querySelector('.films_list');
 const openBtn = document.querySelector('.footer__authorship');
-const loodashDebounce = 350;
+const loodashDebounce = 1000;
 
 inputRef.addEventListener('input', debounce(getInputValue, loodashDebounce));
-inputRef.addEventListener('submit', submitForm)
+inputRef.addEventListener('submit', submitForm);
 homeButtonRef.addEventListener('click', openHomePage);
 libraryButtonRef.addEventListener('click', openLibrary);
 input.addEventListener('click', toggleTheme);
@@ -29,7 +32,6 @@ gallery.addEventListener('click', openMovieDetails);
 openBtn.addEventListener('click', openModalWindow);
 
 function openHomePage() {
-  
   getTrendingMovies(1)
     .then(film => {
       onHomeClick();
