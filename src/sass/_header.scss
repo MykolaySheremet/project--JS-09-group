@@ -98,6 +98,10 @@
 	justify-content: space-between;
 }
 
+.container-navigation{
+	justify-content: space-between;
+}
+
 
 
 .logo__images{
@@ -162,7 +166,11 @@
 .menu-logo__logo {
 	width: 24px;
 	height: 24px;
-	margin-right: 10px;
+	margin-right: 8px;
+
+	@media screen and (min-width: 1280px) {
+			margin-right: 10px;
+		}
 }
 
 .menu-logo__text {
@@ -385,4 +393,9 @@ left:0;
 	display: block;
 	font-size: 14px;	
 	line-height: 1.14;
+}
+
+.container_render_link{
+	display: flex;
+	align-items: center;
 }
