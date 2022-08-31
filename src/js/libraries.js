@@ -199,7 +199,6 @@ function preloaderfunction() {
 function renderListFilms(arays, atr) {
   for (const aray of arays) {
 
-    console.log(aray)
     const imageUrl = aray.poster_path
       ? `https://image.tmdb.org/t/p/w500/${aray.poster_path}`
       : `https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available-737x1024.jpg`;
