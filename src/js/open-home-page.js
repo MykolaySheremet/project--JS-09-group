@@ -34,6 +34,7 @@ openBtn.addEventListener('click', openModalWindow);
 function openHomePage() {
   getTrendingMovies(1)
     .then(film => {
+
       onHomeClick();
       removeEventListenersOnPaginationButtons();
       paginationButtons.addEventListener('click', selectPageTrend);

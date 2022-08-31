@@ -1,6 +1,7 @@
 import defaultLibraryDesc from '../images/cinemaDesc-1x.jpg';
 import defaultLibraryTab from '../images/cinemaTab-1x.jpg';
 import defaultLibraryMob from '../images/cinemaMob-1x.jpg';
+
 import { selectPageWatched, selectPageQueue, selectPageWatched, removeEventListenersOnPaginationButtons, renderButtonsOfPagination } from './pagination';
 
 const divConatiner = document.querySelector('.container-library');
@@ -254,6 +255,7 @@ function checkActiveClassWachedBtn() {
 
 
 function renderEmptyCardLibrary() {
+
   clearContainIfLibraryEmpty();
   renderDefaultLibrary();
 }

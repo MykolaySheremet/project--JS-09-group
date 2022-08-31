@@ -9,8 +9,9 @@ function preloadering() {
     if (!preloader.classList.contains('done')) {
       preloader.classList.add('done')
     }
+    
+  },200);
+
+
 }
 }
-
-export { preloadering }
-
